@@ -12,13 +12,13 @@ namespace StoreMGMT
         private string barcode;
         private string description;
         private double weight;
-        private double costILS;
+        private double cost;
         private int quantity;
 
         public string Barcode { get; set; }
         public string Description { get; set; }
         public double Weight { get; set; }
-        public double CostILS { get; set; }
+        public double Cost { get; set; }
         public int Quantity { get; set; }
 
     }

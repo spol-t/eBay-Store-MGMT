@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.welcomeTbx = new System.Windows.Forms.TextBox();
             this.startBtn = new System.Windows.Forms.Button();
             this.Main = new System.Windows.Forms.TabControl();
@@ -61,6 +68,7 @@
             this.lblStoreName = new System.Windows.Forms.Label();
             this.storeNameTbx = new System.Windows.Forms.TextBox();
             this.addClientTb = new System.Windows.Forms.TabPage();
+            this.addClientClearBtn = new System.Windows.Forms.Button();
             this.updateClientBtn = new System.Windows.Forms.Button();
             this.lblMissingCountry = new System.Windows.Forms.Label();
             this.cmbClientCountry = new System.Windows.Forms.ComboBox();
@@ -90,6 +98,7 @@
             this.lblAddClient = new System.Windows.Forms.Label();
             this.addItemPackTb = new System.Windows.Forms.TabPage();
             this.addItemGb = new System.Windows.Forms.GroupBox();
+            this.addItemClearBtn = new System.Windows.Forms.Button();
             this.updateItemBtn = new System.Windows.Forms.Button();
             this.itemQuantityTbx = new System.Windows.Forms.TextBox();
             this.lblItemQuantity = new System.Windows.Forms.Label();
@@ -103,7 +112,8 @@
             this.lblWeight = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblBarcode = new System.Windows.Forms.Label();
-            this.addPackegGb = new System.Windows.Forms.GroupBox();
+            this.addPackGb = new System.Windows.Forms.GroupBox();
+            this.addPackClearBtn = new System.Windows.Forms.Button();
             this.updatePackBtn = new System.Windows.Forms.Button();
             this.packQuantityTbx = new System.Windows.Forms.TextBox();
             this.lblPackQuantity = new System.Windows.Forms.Label();
@@ -134,38 +144,70 @@
             this.lblShippingCountry = new System.Windows.Forms.Label();
             this.lblAddShipping = new System.Windows.Forms.Label();
             this.sales = new System.Windows.Forms.TabPage();
-            this.salePaymentTbx = new System.Windows.Forms.TextBox();
-            this.lblSalePaymentReceived = new System.Windows.Forms.Label();
-            this.lblSaleDetails = new System.Windows.Forms.Label();
-            this.saleAddItemBtn = new System.Windows.Forms.Button();
-            this.saleFinalizeBtn = new System.Windows.Forms.Button();
+            this.saleExistViewDgv = new System.Windows.Forms.DataGridView();
+            this.saleExistGb = new System.Windows.Forms.GroupBox();
+            this.saleExistDeleteBtn = new System.Windows.Forms.Button();
+            this.saleExistFinalizeBtn = new System.Windows.Forms.Button();
+            this.saleExistViewDetailsBtn = new System.Windows.Forms.Button();
+            this.saleExistTbx = new System.Windows.Forms.TextBox();
+            this.saleClientGb = new System.Windows.Forms.GroupBox();
+            this.saleShippingNoRbt = new System.Windows.Forms.RadioButton();
+            this.saleShippingRegYesRbt = new System.Windows.Forms.RadioButton();
+            this.lblSaleREgidteredShipping = new System.Windows.Forms.Label();
+            this.cmbSaleEmails = new System.Windows.Forms.ComboBox();
+            this.lblSaleClientEmail = new System.Windows.Forms.Label();
+            this.internationalSite = new System.Windows.Forms.CheckBox();
+            this.lblSaleInfo = new System.Windows.Forms.TextBox();
+            this.saleAddPackGb = new System.Windows.Forms.GroupBox();
             this.cmbSalePackBarcode = new System.Windows.Forms.ComboBox();
-            this.salePackQuantity = new System.Windows.Forms.TextBox();
-            this.lblSalePackQuantity = new System.Windows.Forms.Label();
             this.lblSalePackBarcode = new System.Windows.Forms.Label();
+            this.lblSalePackQuantity = new System.Windows.Forms.Label();
+            this.saleAddPackBtn = new System.Windows.Forms.Button();
+            this.salePackQuantityTbx = new System.Windows.Forms.TextBox();
+            this.saleAddItemGb = new System.Windows.Forms.GroupBox();
+            this.saleAddItemBtn = new System.Windows.Forms.Button();
             this.cmbSaleItemBarcode = new System.Windows.Forms.ComboBox();
-            this.salesPayPalFeesTbx = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.lblSalesTotalCost = new System.Windows.Forms.Label();
             this.saleItemQuantityTbx = new System.Windows.Forms.TextBox();
-            this.ebayFeesTbx = new System.Windows.Forms.TextBox();
-            this.saleNumberTbx = new System.Windows.Forms.TextBox();
-            this.lblSalesProfit = new System.Windows.Forms.Label();
-            this.lblSalesPayPalFees = new System.Windows.Forms.Label();
-            this.lblSaleEbayFees = new System.Windows.Forms.Label();
             this.lblSaleItemQuantity = new System.Windows.Forms.Label();
             this.lblSaleItemBarcode = new System.Windows.Forms.Label();
+            this.salePaymentTbx = new System.Windows.Forms.TextBox();
+            this.lblSalePaymentReceived = new System.Windows.Forms.Label();
+            this.saleFinalizeBtn = new System.Windows.Forms.Button();
+            this.saleNumberTbx = new System.Windows.Forms.TextBox();
             this.lblSaleID = new System.Windows.Forms.Label();
             this.lblAddSale = new System.Windows.Forms.Label();
+            this.saleDetails = new System.Windows.Forms.TabPage();
+            this.cmbSaleDetailsSelectSale = new System.Windows.Forms.ComboBox();
+            this.lblSaleDetailsSelectSale = new System.Windows.Forms.Label();
+            this.saleCDSBtn = new System.Windows.Forms.Button();
+            this.saleDetailsDgv = new System.Windows.Forms.DataGridView();
+            this.lblSaleDetails = new System.Windows.Forms.Label();
+            this.reports = new System.Windows.Forms.TabPage();
+            this.reportsBestSellerBtn = new System.Windows.Forms.Button();
+            this.reportsShippingBtn = new System.Windows.Forms.Button();
+            this.reportsClientsBtn = new System.Windows.Forms.Button();
+            this.reportsPacksAboutToEndBtn = new System.Windows.Forms.Button();
+            this.reportsItemsAboutToEndBtn = new System.Windows.Forms.Button();
+            this.reportsPacksInStockBtn = new System.Windows.Forms.Button();
+            this.reportsItemsInStockBtn = new System.Windows.Forms.Button();
+            this.lblReports = new System.Windows.Forms.Label();
+            this.addShippingClearBtn = new System.Windows.Forms.Button();
             this.Main.SuspendLayout();
             this.settingsTb.SuspendLayout();
             this.addClientTb.SuspendLayout();
             this.addItemPackTb.SuspendLayout();
             this.addItemGb.SuspendLayout();
-            this.addPackegGb.SuspendLayout();
+            this.addPackGb.SuspendLayout();
             this.shipping.SuspendLayout();
             this.sales.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.saleExistViewDgv)).BeginInit();
+            this.saleExistGb.SuspendLayout();
+            this.saleClientGb.SuspendLayout();
+            this.saleAddPackGb.SuspendLayout();
+            this.saleAddItemGb.SuspendLayout();
+            this.saleDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.saleDetailsDgv)).BeginInit();
+            this.reports.SuspendLayout();
             this.SuspendLayout();
             // 
             // welcomeTbx
@@ -198,12 +240,14 @@
             this.Main.Controls.Add(this.addItemPackTb);
             this.Main.Controls.Add(this.shipping);
             this.Main.Controls.Add(this.sales);
+            this.Main.Controls.Add(this.saleDetails);
+            this.Main.Controls.Add(this.reports);
             this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Main.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Main.Location = new System.Drawing.Point(0, 0);
             this.Main.Name = "Main";
             this.Main.SelectedIndex = 0;
-            this.Main.Size = new System.Drawing.Size(1011, 539);
+            this.Main.Size = new System.Drawing.Size(1011, 625);
             this.Main.TabIndex = 29;
             this.Main.Visible = false;
             this.Main.SelectedIndexChanged += new System.EventHandler(this.Main_SelectedIndexChanged);
@@ -241,7 +285,7 @@
             this.settingsTb.Location = new System.Drawing.Point(4, 34);
             this.settingsTb.Name = "settingsTb";
             this.settingsTb.Padding = new System.Windows.Forms.Padding(3);
-            this.settingsTb.Size = new System.Drawing.Size(1003, 501);
+            this.settingsTb.Size = new System.Drawing.Size(1003, 587);
             this.settingsTb.TabIndex = 0;
             this.settingsTb.Text = "Settings";
             this.settingsTb.UseVisualStyleBackColor = true;
@@ -522,6 +566,7 @@
             // 
             // addClientTb
             // 
+            this.addClientTb.Controls.Add(this.addClientClearBtn);
             this.addClientTb.Controls.Add(this.updateClientBtn);
             this.addClientTb.Controls.Add(this.lblMissingCountry);
             this.addClientTb.Controls.Add(this.cmbClientCountry);
@@ -552,14 +597,25 @@
             this.addClientTb.Location = new System.Drawing.Point(4, 34);
             this.addClientTb.Name = "addClientTb";
             this.addClientTb.Padding = new System.Windows.Forms.Padding(3);
-            this.addClientTb.Size = new System.Drawing.Size(1003, 501);
+            this.addClientTb.Size = new System.Drawing.Size(1003, 587);
             this.addClientTb.TabIndex = 2;
             this.addClientTb.Text = "Add Client";
             this.addClientTb.UseVisualStyleBackColor = true;
             // 
+            // addClientClearBtn
+            // 
+            this.addClientClearBtn.Location = new System.Drawing.Point(566, 405);
+            this.addClientClearBtn.Name = "addClientClearBtn";
+            this.addClientClearBtn.Size = new System.Drawing.Size(96, 32);
+            this.addClientClearBtn.TabIndex = 85;
+            this.addClientClearBtn.Text = "Clear";
+            this.addClientClearBtn.UseVisualStyleBackColor = true;
+            this.addClientClearBtn.Visible = false;
+            this.addClientClearBtn.Click += new System.EventHandler(this.addClientClearBtn_Click);
+            // 
             // updateClientBtn
             // 
-            this.updateClientBtn.Location = new System.Drawing.Point(557, 338);
+            this.updateClientBtn.Location = new System.Drawing.Point(566, 354);
             this.updateClientBtn.Name = "updateClientBtn";
             this.updateClientBtn.Size = new System.Drawing.Size(96, 34);
             this.updateClientBtn.TabIndex = 84;
@@ -572,7 +628,7 @@
             // 
             this.lblMissingCountry.AutoSize = true;
             this.lblMissingCountry.Font = new System.Drawing.Font("Elephant", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMissingCountry.Location = new System.Drawing.Point(670, 206);
+            this.lblMissingCountry.Location = new System.Drawing.Point(670, 238);
             this.lblMissingCountry.MaximumSize = new System.Drawing.Size(260, 0);
             this.lblMissingCountry.Name = "lblMissingCountry";
             this.lblMissingCountry.Size = new System.Drawing.Size(258, 34);
@@ -584,7 +640,7 @@
             this.cmbClientCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientCountry.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.cmbClientCountry.FormattingEnabled = true;
-            this.cmbClientCountry.Location = new System.Drawing.Point(541, 210);
+            this.cmbClientCountry.Location = new System.Drawing.Point(541, 242);
             this.cmbClientCountry.Name = "cmbClientCountry";
             this.cmbClientCountry.Size = new System.Drawing.Size(121, 26);
             this.cmbClientCountry.TabIndex = 82;
@@ -595,7 +651,7 @@
             this.addClientInfoTbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.addClientInfoTbx.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.addClientInfoTbx.ForeColor = System.Drawing.Color.Red;
-            this.addClientInfoTbx.Location = new System.Drawing.Point(194, 328);
+            this.addClientInfoTbx.Location = new System.Drawing.Point(194, 360);
             this.addClientInfoTbx.Multiline = true;
             this.addClientInfoTbx.Name = "addClientInfoTbx";
             this.addClientInfoTbx.Size = new System.Drawing.Size(357, 59);
@@ -608,7 +664,7 @@
             // 
             this.lblClientValidEmail.AutoSize = true;
             this.lblClientValidEmail.ForeColor = System.Drawing.Color.Red;
-            this.lblClientValidEmail.Location = new System.Drawing.Point(668, 259);
+            this.lblClientValidEmail.Location = new System.Drawing.Point(668, 291);
             this.lblClientValidEmail.Name = "lblClientValidEmail";
             this.lblClientValidEmail.Size = new System.Drawing.Size(254, 25);
             this.lblClientValidEmail.TabIndex = 80;
@@ -619,7 +675,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Elephant", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(474, 123);
+            this.label2.Location = new System.Drawing.Point(474, 155);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 14);
             this.label2.TabIndex = 79;
@@ -628,7 +684,7 @@
             // addClientBtn
             // 
             this.addClientBtn.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addClientBtn.Location = new System.Drawing.Point(25, 328);
+            this.addClientBtn.Location = new System.Drawing.Point(25, 360);
             this.addClientBtn.Name = "addClientBtn";
             this.addClientBtn.Size = new System.Drawing.Size(122, 38);
             this.addClientBtn.TabIndex = 78;
@@ -639,7 +695,7 @@
             // clientLastNameTbx
             // 
             this.clientLastNameTbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientLastNameTbx.Location = new System.Drawing.Point(541, 66);
+            this.clientLastNameTbx.Location = new System.Drawing.Point(541, 98);
             this.clientLastNameTbx.Name = "clientLastNameTbx";
             this.clientLastNameTbx.Size = new System.Drawing.Size(121, 26);
             this.clientLastNameTbx.TabIndex = 77;
@@ -648,7 +704,7 @@
             // clientAddress2Tbx
             // 
             this.clientAddress2Tbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientAddress2Tbx.Location = new System.Drawing.Point(541, 114);
+            this.clientAddress2Tbx.Location = new System.Drawing.Point(541, 146);
             this.clientAddress2Tbx.Name = "clientAddress2Tbx";
             this.clientAddress2Tbx.Size = new System.Drawing.Size(121, 26);
             this.clientAddress2Tbx.TabIndex = 76;
@@ -656,7 +712,7 @@
             // clientStateTbx
             // 
             this.clientStateTbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientStateTbx.Location = new System.Drawing.Point(541, 162);
+            this.clientStateTbx.Location = new System.Drawing.Point(541, 194);
             this.clientStateTbx.Name = "clientStateTbx";
             this.clientStateTbx.Size = new System.Drawing.Size(121, 26);
             this.clientStateTbx.TabIndex = 75;
@@ -665,7 +721,7 @@
             // clientEmailTbx
             // 
             this.clientEmailTbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientEmailTbx.Location = new System.Drawing.Point(541, 258);
+            this.clientEmailTbx.Location = new System.Drawing.Point(541, 290);
             this.clientEmailTbx.Name = "clientEmailTbx";
             this.clientEmailTbx.Size = new System.Drawing.Size(121, 26);
             this.clientEmailTbx.TabIndex = 73;
@@ -673,7 +729,7 @@
             // clientPhoneTbx
             // 
             this.clientPhoneTbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientPhoneTbx.Location = new System.Drawing.Point(194, 258);
+            this.clientPhoneTbx.Location = new System.Drawing.Point(194, 290);
             this.clientPhoneTbx.Name = "clientPhoneTbx";
             this.clientPhoneTbx.Size = new System.Drawing.Size(121, 26);
             this.clientPhoneTbx.TabIndex = 72;
@@ -682,7 +738,7 @@
             // clientZipTbx
             // 
             this.clientZipTbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientZipTbx.Location = new System.Drawing.Point(194, 210);
+            this.clientZipTbx.Location = new System.Drawing.Point(194, 242);
             this.clientZipTbx.Name = "clientZipTbx";
             this.clientZipTbx.Size = new System.Drawing.Size(121, 26);
             this.clientZipTbx.TabIndex = 71;
@@ -691,7 +747,7 @@
             // clientCityTbx
             // 
             this.clientCityTbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientCityTbx.Location = new System.Drawing.Point(194, 162);
+            this.clientCityTbx.Location = new System.Drawing.Point(194, 194);
             this.clientCityTbx.Name = "clientCityTbx";
             this.clientCityTbx.Size = new System.Drawing.Size(121, 26);
             this.clientCityTbx.TabIndex = 70;
@@ -700,7 +756,7 @@
             // clientAddress1Tbx
             // 
             this.clientAddress1Tbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientAddress1Tbx.Location = new System.Drawing.Point(194, 114);
+            this.clientAddress1Tbx.Location = new System.Drawing.Point(194, 146);
             this.clientAddress1Tbx.Name = "clientAddress1Tbx";
             this.clientAddress1Tbx.Size = new System.Drawing.Size(121, 26);
             this.clientAddress1Tbx.TabIndex = 69;
@@ -708,7 +764,7 @@
             // clientFirstNameTbx
             // 
             this.clientFirstNameTbx.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientFirstNameTbx.Location = new System.Drawing.Point(194, 66);
+            this.clientFirstNameTbx.Location = new System.Drawing.Point(194, 98);
             this.clientFirstNameTbx.Name = "clientFirstNameTbx";
             this.clientFirstNameTbx.Size = new System.Drawing.Size(121, 26);
             this.clientFirstNameTbx.TabIndex = 68;
@@ -718,7 +774,7 @@
             // 
             this.lblClientEmail.AutoSize = true;
             this.lblClientEmail.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientEmail.Location = new System.Drawing.Point(364, 259);
+            this.lblClientEmail.Location = new System.Drawing.Point(364, 291);
             this.lblClientEmail.Name = "lblClientEmail";
             this.lblClientEmail.Size = new System.Drawing.Size(77, 25);
             this.lblClientEmail.TabIndex = 67;
@@ -728,7 +784,7 @@
             // 
             this.lblClientPhone.AutoSize = true;
             this.lblClientPhone.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientPhone.Location = new System.Drawing.Point(20, 259);
+            this.lblClientPhone.Location = new System.Drawing.Point(20, 291);
             this.lblClientPhone.Name = "lblClientPhone";
             this.lblClientPhone.Size = new System.Drawing.Size(162, 25);
             this.lblClientPhone.TabIndex = 66;
@@ -738,7 +794,7 @@
             // 
             this.lblClientCountry.AutoSize = true;
             this.lblClientCountry.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientCountry.Location = new System.Drawing.Point(364, 211);
+            this.lblClientCountry.Location = new System.Drawing.Point(364, 243);
             this.lblClientCountry.Name = "lblClientCountry";
             this.lblClientCountry.Size = new System.Drawing.Size(96, 25);
             this.lblClientCountry.TabIndex = 65;
@@ -748,7 +804,7 @@
             // 
             this.lblClientZip.AutoSize = true;
             this.lblClientZip.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientZip.Location = new System.Drawing.Point(20, 211);
+            this.lblClientZip.Location = new System.Drawing.Point(20, 243);
             this.lblClientZip.Name = "lblClientZip";
             this.lblClientZip.Size = new System.Drawing.Size(172, 25);
             this.lblClientZip.TabIndex = 64;
@@ -758,7 +814,7 @@
             // 
             this.lblClientState.AutoSize = true;
             this.lblClientState.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientState.Location = new System.Drawing.Point(364, 163);
+            this.lblClientState.Location = new System.Drawing.Point(364, 195);
             this.lblClientState.Name = "lblClientState";
             this.lblClientState.Size = new System.Drawing.Size(159, 25);
             this.lblClientState.TabIndex = 63;
@@ -768,7 +824,7 @@
             // 
             this.lblClientCity.AutoSize = true;
             this.lblClientCity.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientCity.Location = new System.Drawing.Point(20, 163);
+            this.lblClientCity.Location = new System.Drawing.Point(20, 195);
             this.lblClientCity.Name = "lblClientCity";
             this.lblClientCity.Size = new System.Drawing.Size(57, 25);
             this.lblClientCity.TabIndex = 62;
@@ -778,7 +834,7 @@
             // 
             this.lblClientAddress2.AutoSize = true;
             this.lblClientAddress2.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientAddress2.Location = new System.Drawing.Point(364, 115);
+            this.lblClientAddress2.Location = new System.Drawing.Point(364, 147);
             this.lblClientAddress2.Name = "lblClientAddress2";
             this.lblClientAddress2.Size = new System.Drawing.Size(113, 25);
             this.lblClientAddress2.TabIndex = 61;
@@ -788,7 +844,7 @@
             // 
             this.lblClientAddress1.AutoSize = true;
             this.lblClientAddress1.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientAddress1.Location = new System.Drawing.Point(20, 115);
+            this.lblClientAddress1.Location = new System.Drawing.Point(20, 147);
             this.lblClientAddress1.Name = "lblClientAddress1";
             this.lblClientAddress1.Size = new System.Drawing.Size(109, 25);
             this.lblClientAddress1.TabIndex = 60;
@@ -798,7 +854,7 @@
             // 
             this.lblClientLastName.AutoSize = true;
             this.lblClientLastName.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientLastName.Location = new System.Drawing.Point(364, 67);
+            this.lblClientLastName.Location = new System.Drawing.Point(364, 99);
             this.lblClientLastName.Name = "lblClientLastName";
             this.lblClientLastName.Size = new System.Drawing.Size(123, 25);
             this.lblClientLastName.TabIndex = 59;
@@ -808,7 +864,7 @@
             // 
             this.lblClientFirstName.AutoSize = true;
             this.lblClientFirstName.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientFirstName.Location = new System.Drawing.Point(20, 67);
+            this.lblClientFirstName.Location = new System.Drawing.Point(20, 99);
             this.lblClientFirstName.Name = "lblClientFirstName";
             this.lblClientFirstName.Size = new System.Drawing.Size(127, 25);
             this.lblClientFirstName.TabIndex = 58;
@@ -818,7 +874,7 @@
             // 
             this.lblAddClient.AutoSize = true;
             this.lblAddClient.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddClient.Location = new System.Drawing.Point(20, 20);
+            this.lblAddClient.Location = new System.Drawing.Point(20, 52);
             this.lblAddClient.Name = "lblAddClient";
             this.lblAddClient.Size = new System.Drawing.Size(175, 25);
             this.lblAddClient.TabIndex = 1;
@@ -827,17 +883,18 @@
             // addItemPackTb
             // 
             this.addItemPackTb.Controls.Add(this.addItemGb);
-            this.addItemPackTb.Controls.Add(this.addPackegGb);
+            this.addItemPackTb.Controls.Add(this.addPackGb);
             this.addItemPackTb.Location = new System.Drawing.Point(4, 34);
             this.addItemPackTb.Name = "addItemPackTb";
             this.addItemPackTb.Padding = new System.Windows.Forms.Padding(3);
-            this.addItemPackTb.Size = new System.Drawing.Size(1003, 501);
+            this.addItemPackTb.Size = new System.Drawing.Size(1003, 587);
             this.addItemPackTb.TabIndex = 1;
             this.addItemPackTb.Text = "Add Items/Packs";
             this.addItemPackTb.UseVisualStyleBackColor = true;
             // 
             // addItemGb
             // 
+            this.addItemGb.Controls.Add(this.addItemClearBtn);
             this.addItemGb.Controls.Add(this.updateItemBtn);
             this.addItemGb.Controls.Add(this.itemQuantityTbx);
             this.addItemGb.Controls.Add(this.lblItemQuantity);
@@ -851,22 +908,34 @@
             this.addItemGb.Controls.Add(this.lblWeight);
             this.addItemGb.Controls.Add(this.lblDescription);
             this.addItemGb.Controls.Add(this.lblBarcode);
-            this.addItemGb.Location = new System.Drawing.Point(8, 23);
+            this.addItemGb.Location = new System.Drawing.Point(8, 47);
             this.addItemGb.Name = "addItemGb";
             this.addItemGb.Size = new System.Drawing.Size(938, 214);
             this.addItemGb.TabIndex = 28;
             this.addItemGb.TabStop = false;
             this.addItemGb.Text = "Add Item For Sale";
             // 
+            // addItemClearBtn
+            // 
+            this.addItemClearBtn.Location = new System.Drawing.Point(826, 136);
+            this.addItemClearBtn.Name = "addItemClearBtn";
+            this.addItemClearBtn.Size = new System.Drawing.Size(100, 32);
+            this.addItemClearBtn.TabIndex = 41;
+            this.addItemClearBtn.Text = "Clear";
+            this.addItemClearBtn.UseVisualStyleBackColor = true;
+            this.addItemClearBtn.Visible = false;
+            this.addItemClearBtn.Click += new System.EventHandler(this.addItemClearBtn_Click);
+            // 
             // updateItemBtn
             // 
-            this.updateItemBtn.Location = new System.Drawing.Point(826, 136);
+            this.updateItemBtn.Location = new System.Drawing.Point(704, 136);
             this.updateItemBtn.Name = "updateItemBtn";
             this.updateItemBtn.Size = new System.Drawing.Size(100, 32);
             this.updateItemBtn.TabIndex = 40;
             this.updateItemBtn.Text = "Update";
             this.updateItemBtn.UseVisualStyleBackColor = true;
             this.updateItemBtn.Visible = false;
+            this.updateItemBtn.Click += new System.EventHandler(this.updateItmeBtn_Click);
             // 
             // itemQuantityTbx
             // 
@@ -875,6 +944,7 @@
             this.itemQuantityTbx.Name = "itemQuantityTbx";
             this.itemQuantityTbx.Size = new System.Drawing.Size(100, 26);
             this.itemQuantityTbx.TabIndex = 39;
+            this.itemQuantityTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyIntNum_KeyPress);
             // 
             // lblItemQuantity
             // 
@@ -904,6 +974,7 @@
             this.addItemBtn.TabIndex = 36;
             this.addItemBtn.Text = "Add Item";
             this.addItemBtn.UseVisualStyleBackColor = true;
+            this.addItemBtn.Click += new System.EventHandler(this.addItemBtn_Click);
             // 
             // itemCostTbx
             // 
@@ -912,6 +983,7 @@
             this.itemCostTbx.Name = "itemCostTbx";
             this.itemCostTbx.Size = new System.Drawing.Size(100, 26);
             this.itemCostTbx.TabIndex = 35;
+            this.itemCostTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyFloatNum_KeyPress);
             // 
             // itemWeightTbx
             // 
@@ -920,6 +992,7 @@
             this.itemWeightTbx.Name = "itemWeightTbx";
             this.itemWeightTbx.Size = new System.Drawing.Size(100, 26);
             this.itemWeightTbx.TabIndex = 34;
+            this.itemWeightTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyFloatNum_KeyPress);
             // 
             // itemDescriptionTbx
             // 
@@ -973,37 +1046,50 @@
             this.lblBarcode.TabIndex = 28;
             this.lblBarcode.Text = "Barcode:";
             // 
-            // addPackegGb
+            // addPackGb
             // 
-            this.addPackegGb.Controls.Add(this.updatePackBtn);
-            this.addPackegGb.Controls.Add(this.packQuantityTbx);
-            this.addPackegGb.Controls.Add(this.lblPackQuantity);
-            this.addPackegGb.Controls.Add(this.lblAddPackInfo);
-            this.addPackegGb.Controls.Add(this.addPackBtn);
-            this.addPackegGb.Controls.Add(this.packCostTbx);
-            this.addPackegGb.Controls.Add(this.packWeightTbx);
-            this.addPackegGb.Controls.Add(this.packDescriptionTbx);
-            this.addPackegGb.Controls.Add(this.packBarcodeTbx);
-            this.addPackegGb.Controls.Add(this.lblPackCost);
-            this.addPackegGb.Controls.Add(this.lblPackWeight);
-            this.addPackegGb.Controls.Add(this.lblPackDescription);
-            this.addPackegGb.Controls.Add(this.lblPackBarcode);
-            this.addPackegGb.Location = new System.Drawing.Point(8, 257);
-            this.addPackegGb.Name = "addPackegGb";
-            this.addPackegGb.Size = new System.Drawing.Size(939, 199);
-            this.addPackegGb.TabIndex = 27;
-            this.addPackegGb.TabStop = false;
-            this.addPackegGb.Text = "Add Packege";
+            this.addPackGb.Controls.Add(this.addPackClearBtn);
+            this.addPackGb.Controls.Add(this.updatePackBtn);
+            this.addPackGb.Controls.Add(this.packQuantityTbx);
+            this.addPackGb.Controls.Add(this.lblPackQuantity);
+            this.addPackGb.Controls.Add(this.lblAddPackInfo);
+            this.addPackGb.Controls.Add(this.addPackBtn);
+            this.addPackGb.Controls.Add(this.packCostTbx);
+            this.addPackGb.Controls.Add(this.packWeightTbx);
+            this.addPackGb.Controls.Add(this.packDescriptionTbx);
+            this.addPackGb.Controls.Add(this.packBarcodeTbx);
+            this.addPackGb.Controls.Add(this.lblPackCost);
+            this.addPackGb.Controls.Add(this.lblPackWeight);
+            this.addPackGb.Controls.Add(this.lblPackDescription);
+            this.addPackGb.Controls.Add(this.lblPackBarcode);
+            this.addPackGb.Location = new System.Drawing.Point(8, 281);
+            this.addPackGb.Name = "addPackGb";
+            this.addPackGb.Size = new System.Drawing.Size(939, 199);
+            this.addPackGb.TabIndex = 27;
+            this.addPackGb.TabStop = false;
+            this.addPackGb.Text = "Add Packege";
+            // 
+            // addPackClearBtn
+            // 
+            this.addPackClearBtn.Location = new System.Drawing.Point(826, 138);
+            this.addPackClearBtn.Name = "addPackClearBtn";
+            this.addPackClearBtn.Size = new System.Drawing.Size(100, 32);
+            this.addPackClearBtn.TabIndex = 42;
+            this.addPackClearBtn.Text = "Clear";
+            this.addPackClearBtn.UseVisualStyleBackColor = true;
+            this.addPackClearBtn.Visible = false;
+            this.addPackClearBtn.Click += new System.EventHandler(this.addPackClearBtn_Click);
             // 
             // updatePackBtn
             // 
-            this.updatePackBtn.Location = new System.Drawing.Point(826, 138);
+            this.updatePackBtn.Location = new System.Drawing.Point(704, 138);
             this.updatePackBtn.Name = "updatePackBtn";
             this.updatePackBtn.Size = new System.Drawing.Size(100, 32);
             this.updatePackBtn.TabIndex = 41;
             this.updatePackBtn.Text = "Update";
             this.updatePackBtn.UseVisualStyleBackColor = true;
             this.updatePackBtn.Visible = false;
+            this.updatePackBtn.Click += new System.EventHandler(this.updatePackBtn_Click);
             // 
             // packQuantityTbx
             // 
@@ -1012,6 +1098,7 @@
             this.packQuantityTbx.Name = "packQuantityTbx";
             this.packQuantityTbx.Size = new System.Drawing.Size(94, 26);
             this.packQuantityTbx.TabIndex = 40;
+            this.packQuantityTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyIntNum_KeyPress);
             // 
             // lblPackQuantity
             // 
@@ -1042,6 +1129,7 @@
             this.addPackBtn.TabIndex = 37;
             this.addPackBtn.Text = "Add Package";
             this.addPackBtn.UseVisualStyleBackColor = true;
+            this.addPackBtn.Click += new System.EventHandler(this.addPackBtn_Click);
             // 
             // packCostTbx
             // 
@@ -1050,6 +1138,7 @@
             this.packCostTbx.Name = "packCostTbx";
             this.packCostTbx.Size = new System.Drawing.Size(100, 26);
             this.packCostTbx.TabIndex = 36;
+            this.packCostTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyFloatNum_KeyPress);
             // 
             // packWeightTbx
             // 
@@ -1058,6 +1147,7 @@
             this.packWeightTbx.Name = "packWeightTbx";
             this.packWeightTbx.Size = new System.Drawing.Size(100, 26);
             this.packWeightTbx.TabIndex = 35;
+            this.packWeightTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyFloatNum_KeyPress);
             // 
             // packDescriptionTbx
             // 
@@ -1113,6 +1203,7 @@
             // 
             // shipping
             // 
+            this.shipping.Controls.Add(this.addShippingClearBtn);
             this.shipping.Controls.Add(this.updateShippingBtn);
             this.shipping.Controls.Add(this.shippingErrorTbx);
             this.shipping.Controls.Add(this.addShippingBtn);
@@ -1130,14 +1221,14 @@
             this.shipping.Controls.Add(this.lblAddShipping);
             this.shipping.Location = new System.Drawing.Point(4, 34);
             this.shipping.Name = "shipping";
-            this.shipping.Size = new System.Drawing.Size(1003, 501);
+            this.shipping.Size = new System.Drawing.Size(1003, 587);
             this.shipping.TabIndex = 4;
             this.shipping.Text = "Shipping";
             this.shipping.UseVisualStyleBackColor = true;
             // 
             // updateShippingBtn
             // 
-            this.updateShippingBtn.Location = new System.Drawing.Point(509, 236);
+            this.updateShippingBtn.Location = new System.Drawing.Point(342, 519);
             this.updateShippingBtn.Name = "updateShippingBtn";
             this.updateShippingBtn.Size = new System.Drawing.Size(96, 34);
             this.updateShippingBtn.TabIndex = 83;
@@ -1151,7 +1242,7 @@
             this.shippingErrorTbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.shippingErrorTbx.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.shippingErrorTbx.ForeColor = System.Drawing.Color.Red;
-            this.shippingErrorTbx.Location = new System.Drawing.Point(379, 165);
+            this.shippingErrorTbx.Location = new System.Drawing.Point(300, 442);
             this.shippingErrorTbx.Multiline = true;
             this.shippingErrorTbx.Name = "shippingErrorTbx";
             this.shippingErrorTbx.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -1163,7 +1254,7 @@
             // 
             // addShippingBtn
             // 
-            this.addShippingBtn.Location = new System.Drawing.Point(29, 393);
+            this.addShippingBtn.Location = new System.Drawing.Point(342, 372);
             this.addShippingBtn.Name = "addShippingBtn";
             this.addShippingBtn.Size = new System.Drawing.Size(271, 32);
             this.addShippingBtn.TabIndex = 20;
@@ -1175,7 +1266,7 @@
             // 
             this.shippingRegNoRbt.AutoSize = true;
             this.shippingRegNoRbt.Checked = true;
-            this.shippingRegNoRbt.Location = new System.Drawing.Point(242, 252);
+            this.shippingRegNoRbt.Location = new System.Drawing.Point(555, 231);
             this.shippingRegNoRbt.Name = "shippingRegNoRbt";
             this.shippingRegNoRbt.Size = new System.Drawing.Size(58, 29);
             this.shippingRegNoRbt.TabIndex = 12;
@@ -1186,7 +1277,7 @@
             // shippingRegYesRbt
             // 
             this.shippingRegYesRbt.AutoSize = true;
-            this.shippingRegYesRbt.Location = new System.Drawing.Point(173, 252);
+            this.shippingRegYesRbt.Location = new System.Drawing.Point(486, 231);
             this.shippingRegYesRbt.Name = "shippingRegYesRbt";
             this.shippingRegYesRbt.Size = new System.Drawing.Size(63, 29);
             this.shippingRegYesRbt.TabIndex = 11;
@@ -1196,7 +1287,7 @@
             // shippingCountryTbx
             // 
             this.shippingCountryTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.shippingCountryTbx.Location = new System.Drawing.Point(174, 87);
+            this.shippingCountryTbx.Location = new System.Drawing.Point(487, 66);
             this.shippingCountryTbx.Name = "shippingCountryTbx";
             this.shippingCountryTbx.Size = new System.Drawing.Size(100, 26);
             this.shippingCountryTbx.TabIndex = 10;
@@ -1205,7 +1296,7 @@
             // shippingMinWeightTbx
             // 
             this.shippingMinWeightTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.shippingMinWeightTbx.Location = new System.Drawing.Point(174, 143);
+            this.shippingMinWeightTbx.Location = new System.Drawing.Point(487, 122);
             this.shippingMinWeightTbx.Name = "shippingMinWeightTbx";
             this.shippingMinWeightTbx.Size = new System.Drawing.Size(100, 26);
             this.shippingMinWeightTbx.TabIndex = 9;
@@ -1214,7 +1305,7 @@
             // shippingMaxWeightTbx
             // 
             this.shippingMaxWeightTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.shippingMaxWeightTbx.Location = new System.Drawing.Point(174, 197);
+            this.shippingMaxWeightTbx.Location = new System.Drawing.Point(487, 176);
             this.shippingMaxWeightTbx.Name = "shippingMaxWeightTbx";
             this.shippingMaxWeightTbx.Size = new System.Drawing.Size(100, 26);
             this.shippingMaxWeightTbx.TabIndex = 8;
@@ -1223,7 +1314,7 @@
             // shippingPriceTbx
             // 
             this.shippingPriceTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.shippingPriceTbx.Location = new System.Drawing.Point(174, 311);
+            this.shippingPriceTbx.Location = new System.Drawing.Point(487, 290);
             this.shippingPriceTbx.Name = "shippingPriceTbx";
             this.shippingPriceTbx.Size = new System.Drawing.Size(100, 26);
             this.shippingPriceTbx.TabIndex = 7;
@@ -1232,7 +1323,7 @@
             // lblShippingPrice
             // 
             this.lblShippingPrice.AutoSize = true;
-            this.lblShippingPrice.Location = new System.Drawing.Point(29, 310);
+            this.lblShippingPrice.Location = new System.Drawing.Point(342, 289);
             this.lblShippingPrice.Name = "lblShippingPrice";
             this.lblShippingPrice.Size = new System.Drawing.Size(69, 25);
             this.lblShippingPrice.TabIndex = 6;
@@ -1241,7 +1332,7 @@
             // lblShippingReg
             // 
             this.lblShippingReg.AutoSize = true;
-            this.lblShippingReg.Location = new System.Drawing.Point(29, 254);
+            this.lblShippingReg.Location = new System.Drawing.Point(342, 233);
             this.lblShippingReg.Name = "lblShippingReg";
             this.lblShippingReg.Size = new System.Drawing.Size(120, 25);
             this.lblShippingReg.TabIndex = 5;
@@ -1250,7 +1341,7 @@
             // lblShippingMaxWeight
             // 
             this.lblShippingMaxWeight.AutoSize = true;
-            this.lblShippingMaxWeight.Location = new System.Drawing.Point(29, 198);
+            this.lblShippingMaxWeight.Location = new System.Drawing.Point(342, 177);
             this.lblShippingMaxWeight.Name = "lblShippingMaxWeight";
             this.lblShippingMaxWeight.Size = new System.Drawing.Size(139, 25);
             this.lblShippingMaxWeight.TabIndex = 4;
@@ -1259,7 +1350,7 @@
             // lblShippingMinWeight
             // 
             this.lblShippingMinWeight.AutoSize = true;
-            this.lblShippingMinWeight.Location = new System.Drawing.Point(29, 142);
+            this.lblShippingMinWeight.Location = new System.Drawing.Point(342, 121);
             this.lblShippingMinWeight.Name = "lblShippingMinWeight";
             this.lblShippingMinWeight.Size = new System.Drawing.Size(136, 25);
             this.lblShippingMinWeight.TabIndex = 3;
@@ -1268,7 +1359,7 @@
             // lblShippingCountry
             // 
             this.lblShippingCountry.AutoSize = true;
-            this.lblShippingCountry.Location = new System.Drawing.Point(29, 86);
+            this.lblShippingCountry.Location = new System.Drawing.Point(342, 65);
             this.lblShippingCountry.Name = "lblShippingCountry";
             this.lblShippingCountry.Size = new System.Drawing.Size(96, 25);
             this.lblShippingCountry.TabIndex = 2;
@@ -1286,41 +1377,337 @@
             // 
             // sales
             // 
+            this.sales.Controls.Add(this.saleExistViewDgv);
+            this.sales.Controls.Add(this.saleExistGb);
+            this.sales.Controls.Add(this.saleClientGb);
+            this.sales.Controls.Add(this.internationalSite);
+            this.sales.Controls.Add(this.lblSaleInfo);
+            this.sales.Controls.Add(this.saleAddPackGb);
+            this.sales.Controls.Add(this.saleAddItemGb);
             this.sales.Controls.Add(this.salePaymentTbx);
             this.sales.Controls.Add(this.lblSalePaymentReceived);
-            this.sales.Controls.Add(this.lblSaleDetails);
-            this.sales.Controls.Add(this.saleAddItemBtn);
             this.sales.Controls.Add(this.saleFinalizeBtn);
-            this.sales.Controls.Add(this.cmbSalePackBarcode);
-            this.sales.Controls.Add(this.salePackQuantity);
-            this.sales.Controls.Add(this.lblSalePackQuantity);
-            this.sales.Controls.Add(this.lblSalePackBarcode);
-            this.sales.Controls.Add(this.cmbSaleItemBarcode);
-            this.sales.Controls.Add(this.salesPayPalFeesTbx);
-            this.sales.Controls.Add(this.textBox5);
-            this.sales.Controls.Add(this.textBox4);
-            this.sales.Controls.Add(this.lblSalesTotalCost);
-            this.sales.Controls.Add(this.saleItemQuantityTbx);
-            this.sales.Controls.Add(this.ebayFeesTbx);
             this.sales.Controls.Add(this.saleNumberTbx);
-            this.sales.Controls.Add(this.lblSalesProfit);
-            this.sales.Controls.Add(this.lblSalesPayPalFees);
-            this.sales.Controls.Add(this.lblSaleEbayFees);
-            this.sales.Controls.Add(this.lblSaleItemQuantity);
-            this.sales.Controls.Add(this.lblSaleItemBarcode);
             this.sales.Controls.Add(this.lblSaleID);
             this.sales.Controls.Add(this.lblAddSale);
             this.sales.Location = new System.Drawing.Point(4, 34);
             this.sales.Name = "sales";
-            this.sales.Size = new System.Drawing.Size(1003, 501);
+            this.sales.Size = new System.Drawing.Size(1003, 587);
             this.sales.TabIndex = 3;
             this.sales.Text = "Sales";
             this.sales.UseVisualStyleBackColor = true;
+            this.sales.Enter += new System.EventHandler(this.sales_Enter);
+            // 
+            // saleExistViewDgv
+            // 
+            this.saleExistViewDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Elephant", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleExistViewDgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.saleExistViewDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Elephant", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleExistViewDgv.DefaultCellStyle = dataGridViewCellStyle2;
+            this.saleExistViewDgv.Location = new System.Drawing.Point(160, 465);
+            this.saleExistViewDgv.Name = "saleExistViewDgv";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleExistViewDgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleExistViewDgv.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.saleExistViewDgv.RowTemplate.ReadOnly = true;
+            this.saleExistViewDgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleExistViewDgv.Size = new System.Drawing.Size(555, 114);
+            this.saleExistViewDgv.TabIndex = 102;
+            this.saleExistViewDgv.Visible = false;
+            // 
+            // saleExistGb
+            // 
+            this.saleExistGb.Controls.Add(this.saleExistDeleteBtn);
+            this.saleExistGb.Controls.Add(this.saleExistFinalizeBtn);
+            this.saleExistGb.Controls.Add(this.saleExistViewDetailsBtn);
+            this.saleExistGb.Controls.Add(this.saleExistTbx);
+            this.saleExistGb.Location = new System.Drawing.Point(791, 80);
+            this.saleExistGb.Name = "saleExistGb";
+            this.saleExistGb.Size = new System.Drawing.Size(200, 316);
+            this.saleExistGb.TabIndex = 101;
+            this.saleExistGb.TabStop = false;
+            this.saleExistGb.Visible = false;
+            // 
+            // saleExistDeleteBtn
+            // 
+            this.saleExistDeleteBtn.Location = new System.Drawing.Point(17, 269);
+            this.saleExistDeleteBtn.Name = "saleExistDeleteBtn";
+            this.saleExistDeleteBtn.Size = new System.Drawing.Size(166, 34);
+            this.saleExistDeleteBtn.TabIndex = 97;
+            this.saleExistDeleteBtn.Text = "Delete Sale";
+            this.saleExistDeleteBtn.UseVisualStyleBackColor = true;
+            this.saleExistDeleteBtn.Click += new System.EventHandler(this.saleExistDeleteBtn_Click);
+            // 
+            // saleExistFinalizeBtn
+            // 
+            this.saleExistFinalizeBtn.Location = new System.Drawing.Point(17, 219);
+            this.saleExistFinalizeBtn.Name = "saleExistFinalizeBtn";
+            this.saleExistFinalizeBtn.Size = new System.Drawing.Size(166, 34);
+            this.saleExistFinalizeBtn.TabIndex = 96;
+            this.saleExistFinalizeBtn.Text = "Finalize Sale";
+            this.saleExistFinalizeBtn.UseVisualStyleBackColor = true;
+            this.saleExistFinalizeBtn.Click += new System.EventHandler(this.saleExistFinalizeBtn_Click);
+            // 
+            // saleExistViewDetailsBtn
+            // 
+            this.saleExistViewDetailsBtn.Location = new System.Drawing.Point(17, 169);
+            this.saleExistViewDetailsBtn.Name = "saleExistViewDetailsBtn";
+            this.saleExistViewDetailsBtn.Size = new System.Drawing.Size(166, 34);
+            this.saleExistViewDetailsBtn.TabIndex = 95;
+            this.saleExistViewDetailsBtn.Text = "View Details";
+            this.saleExistViewDetailsBtn.UseVisualStyleBackColor = true;
+            this.saleExistViewDetailsBtn.Click += new System.EventHandler(this.saleExistViewDetailsBtn_Click);
+            // 
+            // saleExistTbx
+            // 
+            this.saleExistTbx.BackColor = System.Drawing.SystemColors.Menu;
+            this.saleExistTbx.ForeColor = System.Drawing.Color.Red;
+            this.saleExistTbx.Location = new System.Drawing.Point(6, 21);
+            this.saleExistTbx.Multiline = true;
+            this.saleExistTbx.Name = "saleExistTbx";
+            this.saleExistTbx.Size = new System.Drawing.Size(188, 119);
+            this.saleExistTbx.TabIndex = 0;
+            // 
+            // saleClientGb
+            // 
+            this.saleClientGb.Controls.Add(this.saleShippingNoRbt);
+            this.saleClientGb.Controls.Add(this.saleShippingRegYesRbt);
+            this.saleClientGb.Controls.Add(this.lblSaleREgidteredShipping);
+            this.saleClientGb.Controls.Add(this.cmbSaleEmails);
+            this.saleClientGb.Controls.Add(this.lblSaleClientEmail);
+            this.saleClientGb.Location = new System.Drawing.Point(8, 293);
+            this.saleClientGb.Name = "saleClientGb";
+            this.saleClientGb.Size = new System.Drawing.Size(753, 78);
+            this.saleClientGb.TabIndex = 98;
+            this.saleClientGb.TabStop = false;
+            this.saleClientGb.Text = "Choose Client";
+            // 
+            // saleShippingNoRbt
+            // 
+            this.saleShippingNoRbt.AutoSize = true;
+            this.saleShippingNoRbt.Checked = true;
+            this.saleShippingNoRbt.Location = new System.Drawing.Point(630, 32);
+            this.saleShippingNoRbt.Name = "saleShippingNoRbt";
+            this.saleShippingNoRbt.Size = new System.Drawing.Size(58, 29);
+            this.saleShippingNoRbt.TabIndex = 90;
+            this.saleShippingNoRbt.TabStop = true;
+            this.saleShippingNoRbt.Text = "No";
+            this.saleShippingNoRbt.UseVisualStyleBackColor = true;
+            // 
+            // saleShippingRegYesRbt
+            // 
+            this.saleShippingRegYesRbt.AutoSize = true;
+            this.saleShippingRegYesRbt.Location = new System.Drawing.Point(561, 32);
+            this.saleShippingRegYesRbt.Name = "saleShippingRegYesRbt";
+            this.saleShippingRegYesRbt.Size = new System.Drawing.Size(63, 29);
+            this.saleShippingRegYesRbt.TabIndex = 89;
+            this.saleShippingRegYesRbt.Text = "Yes";
+            this.saleShippingRegYesRbt.UseVisualStyleBackColor = true;
+            // 
+            // lblSaleREgidteredShipping
+            // 
+            this.lblSaleREgidteredShipping.AutoSize = true;
+            this.lblSaleREgidteredShipping.Location = new System.Drawing.Point(417, 34);
+            this.lblSaleREgidteredShipping.Name = "lblSaleREgidteredShipping";
+            this.lblSaleREgidteredShipping.Size = new System.Drawing.Size(120, 25);
+            this.lblSaleREgidteredShipping.TabIndex = 88;
+            this.lblSaleREgidteredShipping.Text = "Registered:";
+            // 
+            // cmbSaleEmails
+            // 
+            this.cmbSaleEmails.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSaleEmails.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.cmbSaleEmails.FormattingEnabled = true;
+            this.cmbSaleEmails.Location = new System.Drawing.Point(250, 33);
+            this.cmbSaleEmails.Name = "cmbSaleEmails";
+            this.cmbSaleEmails.Size = new System.Drawing.Size(121, 26);
+            this.cmbSaleEmails.TabIndex = 87;
+            this.cmbSaleEmails.Enter += new System.EventHandler(this.cmbSaleEmails_Enter);
+            // 
+            // lblSaleClientEmail
+            // 
+            this.lblSaleClientEmail.AutoSize = true;
+            this.lblSaleClientEmail.Location = new System.Drawing.Point(16, 34);
+            this.lblSaleClientEmail.Name = "lblSaleClientEmail";
+            this.lblSaleClientEmail.Size = new System.Drawing.Size(228, 25);
+            this.lblSaleClientEmail.TabIndex = 84;
+            this.lblSaleClientEmail.Text = "Client\'s eMail Address:";
+            // 
+            // internationalSite
+            // 
+            this.internationalSite.AutoSize = true;
+            this.internationalSite.Location = new System.Drawing.Point(341, 69);
+            this.internationalSite.Name = "internationalSite";
+            this.internationalSite.Size = new System.Drawing.Size(200, 29);
+            this.internationalSite.TabIndex = 100;
+            this.internationalSite.Text = "Internatinoal Site";
+            this.internationalSite.UseVisualStyleBackColor = true;
+            // 
+            // lblSaleInfo
+            // 
+            this.lblSaleInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lblSaleInfo.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblSaleInfo.ForeColor = System.Drawing.Color.Red;
+            this.lblSaleInfo.Location = new System.Drawing.Point(258, 440);
+            this.lblSaleInfo.Multiline = true;
+            this.lblSaleInfo.Name = "lblSaleInfo";
+            this.lblSaleInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblSaleInfo.Size = new System.Drawing.Size(357, 72);
+            this.lblSaleInfo.TabIndex = 99;
+            this.lblSaleInfo.Text = "*Please fill all the required fields!";
+            this.lblSaleInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lblSaleInfo.Visible = false;
+            // 
+            // saleAddPackGb
+            // 
+            this.saleAddPackGb.Controls.Add(this.cmbSalePackBarcode);
+            this.saleAddPackGb.Controls.Add(this.lblSalePackBarcode);
+            this.saleAddPackGb.Controls.Add(this.lblSalePackQuantity);
+            this.saleAddPackGb.Controls.Add(this.saleAddPackBtn);
+            this.saleAddPackGb.Controls.Add(this.salePackQuantityTbx);
+            this.saleAddPackGb.Location = new System.Drawing.Point(8, 200);
+            this.saleAddPackGb.Name = "saleAddPackGb";
+            this.saleAddPackGb.Size = new System.Drawing.Size(753, 78);
+            this.saleAddPackGb.TabIndex = 97;
+            this.saleAddPackGb.TabStop = false;
+            this.saleAddPackGb.Text = "Add Pack";
+            // 
+            // cmbSalePackBarcode
+            // 
+            this.cmbSalePackBarcode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSalePackBarcode.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.cmbSalePackBarcode.FormattingEnabled = true;
+            this.cmbSalePackBarcode.Location = new System.Drawing.Point(163, 31);
+            this.cmbSalePackBarcode.Name = "cmbSalePackBarcode";
+            this.cmbSalePackBarcode.Size = new System.Drawing.Size(121, 26);
+            this.cmbSalePackBarcode.TabIndex = 87;
+            this.cmbSalePackBarcode.Enter += new System.EventHandler(this.cmbSalePackBarcode_Enter);
+            // 
+            // lblSalePackBarcode
+            // 
+            this.lblSalePackBarcode.AutoSize = true;
+            this.lblSalePackBarcode.Location = new System.Drawing.Point(16, 32);
+            this.lblSalePackBarcode.Name = "lblSalePackBarcode";
+            this.lblSalePackBarcode.Size = new System.Drawing.Size(152, 25);
+            this.lblSalePackBarcode.TabIndex = 84;
+            this.lblSalePackBarcode.Text = "Pack Barcode:";
+            // 
+            // lblSalePackQuantity
+            // 
+            this.lblSalePackQuantity.AutoSize = true;
+            this.lblSalePackQuantity.Location = new System.Drawing.Point(327, 32);
+            this.lblSalePackQuantity.Name = "lblSalePackQuantity";
+            this.lblSalePackQuantity.Size = new System.Drawing.Size(102, 25);
+            this.lblSalePackQuantity.TabIndex = 85;
+            this.lblSalePackQuantity.Text = "Quantity:";
+            // 
+            // saleAddPackBtn
+            // 
+            this.saleAddPackBtn.Location = new System.Drawing.Point(569, 27);
+            this.saleAddPackBtn.Name = "saleAddPackBtn";
+            this.saleAddPackBtn.Size = new System.Drawing.Size(138, 34);
+            this.saleAddPackBtn.TabIndex = 94;
+            this.saleAddPackBtn.Text = "Add  Pack";
+            this.saleAddPackBtn.UseVisualStyleBackColor = true;
+            this.saleAddPackBtn.Click += new System.EventHandler(this.saleAddPackBtn_Click);
+            // 
+            // salePackQuantityTbx
+            // 
+            this.salePackQuantityTbx.Font = new System.Drawing.Font("Arial", 12F);
+            this.salePackQuantityTbx.Location = new System.Drawing.Point(429, 32);
+            this.salePackQuantityTbx.Name = "salePackQuantityTbx";
+            this.salePackQuantityTbx.Size = new System.Drawing.Size(100, 26);
+            this.salePackQuantityTbx.TabIndex = 86;
+            this.salePackQuantityTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyIntNum_KeyPress);
+            // 
+            // saleAddItemGb
+            // 
+            this.saleAddItemGb.Controls.Add(this.saleAddItemBtn);
+            this.saleAddItemGb.Controls.Add(this.cmbSaleItemBarcode);
+            this.saleAddItemGb.Controls.Add(this.saleItemQuantityTbx);
+            this.saleAddItemGb.Controls.Add(this.lblSaleItemQuantity);
+            this.saleAddItemGb.Controls.Add(this.lblSaleItemBarcode);
+            this.saleAddItemGb.Location = new System.Drawing.Point(8, 115);
+            this.saleAddItemGb.Name = "saleAddItemGb";
+            this.saleAddItemGb.Size = new System.Drawing.Size(753, 70);
+            this.saleAddItemGb.TabIndex = 96;
+            this.saleAddItemGb.TabStop = false;
+            this.saleAddItemGb.Text = "Add Item";
+            // 
+            // saleAddItemBtn
+            // 
+            this.saleAddItemBtn.Location = new System.Drawing.Point(570, 29);
+            this.saleAddItemBtn.Name = "saleAddItemBtn";
+            this.saleAddItemBtn.Size = new System.Drawing.Size(137, 34);
+            this.saleAddItemBtn.TabIndex = 94;
+            this.saleAddItemBtn.Text = "Add  Item";
+            this.saleAddItemBtn.UseVisualStyleBackColor = true;
+            this.saleAddItemBtn.Click += new System.EventHandler(this.saleAddItemBtn_Click);
+            // 
+            // cmbSaleItemBarcode
+            // 
+            this.cmbSaleItemBarcode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSaleItemBarcode.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.cmbSaleItemBarcode.FormattingEnabled = true;
+            this.cmbSaleItemBarcode.Location = new System.Drawing.Point(163, 33);
+            this.cmbSaleItemBarcode.Name = "cmbSaleItemBarcode";
+            this.cmbSaleItemBarcode.Size = new System.Drawing.Size(121, 26);
+            this.cmbSaleItemBarcode.TabIndex = 93;
+            this.cmbSaleItemBarcode.Enter += new System.EventHandler(this.cmbSaleItemBarcode_Enter);
+            // 
+            // saleItemQuantityTbx
+            // 
+            this.saleItemQuantityTbx.Font = new System.Drawing.Font("Arial", 12F);
+            this.saleItemQuantityTbx.Location = new System.Drawing.Point(430, 33);
+            this.saleItemQuantityTbx.Name = "saleItemQuantityTbx";
+            this.saleItemQuantityTbx.Size = new System.Drawing.Size(100, 26);
+            this.saleItemQuantityTbx.TabIndex = 92;
+            this.saleItemQuantityTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyIntNum_KeyPress);
+            // 
+            // lblSaleItemQuantity
+            // 
+            this.lblSaleItemQuantity.AutoSize = true;
+            this.lblSaleItemQuantity.Location = new System.Drawing.Point(328, 34);
+            this.lblSaleItemQuantity.Name = "lblSaleItemQuantity";
+            this.lblSaleItemQuantity.Size = new System.Drawing.Size(102, 25);
+            this.lblSaleItemQuantity.TabIndex = 91;
+            this.lblSaleItemQuantity.Text = "Quantity:";
+            // 
+            // lblSaleItemBarcode
+            // 
+            this.lblSaleItemBarcode.AutoSize = true;
+            this.lblSaleItemBarcode.Location = new System.Drawing.Point(17, 34);
+            this.lblSaleItemBarcode.Name = "lblSaleItemBarcode";
+            this.lblSaleItemBarcode.Size = new System.Drawing.Size(150, 25);
+            this.lblSaleItemBarcode.TabIndex = 90;
+            this.lblSaleItemBarcode.Text = "Item Barcode:";
             // 
             // salePaymentTbx
             // 
             this.salePaymentTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.salePaymentTbx.Location = new System.Drawing.Point(637, 263);
+            this.salePaymentTbx.Location = new System.Drawing.Point(597, 387);
             this.salePaymentTbx.Name = "salePaymentTbx";
             this.salePaymentTbx.Size = new System.Drawing.Size(100, 26);
             this.salePaymentTbx.TabIndex = 92;
@@ -1329,197 +1716,35 @@
             // lblSalePaymentReceived
             // 
             this.lblSalePaymentReceived.AutoSize = true;
-            this.lblSalePaymentReceived.Location = new System.Drawing.Point(439, 262);
+            this.lblSalePaymentReceived.Location = new System.Drawing.Point(399, 388);
             this.lblSalePaymentReceived.Name = "lblSalePaymentReceived";
             this.lblSalePaymentReceived.Size = new System.Drawing.Size(192, 25);
             this.lblSalePaymentReceived.TabIndex = 91;
             this.lblSalePaymentReceived.Text = "Payment Received:";
             // 
-            // lblSaleDetails
-            // 
-            this.lblSaleDetails.AutoSize = true;
-            this.lblSaleDetails.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaleDetails.Location = new System.Drawing.Point(24, 328);
-            this.lblSaleDetails.Name = "lblSaleDetails";
-            this.lblSaleDetails.Size = new System.Drawing.Size(131, 25);
-            this.lblSaleDetails.TabIndex = 90;
-            this.lblSaleDetails.Text = "Sale Details:";
-            // 
-            // saleAddItemBtn
-            // 
-            this.saleAddItemBtn.Location = new System.Drawing.Point(28, 255);
-            this.saleAddItemBtn.Name = "saleAddItemBtn";
-            this.saleAddItemBtn.Size = new System.Drawing.Size(198, 34);
-            this.saleAddItemBtn.TabIndex = 89;
-            this.saleAddItemBtn.Text = "Add Another Item";
-            this.saleAddItemBtn.UseVisualStyleBackColor = true;
-            // 
             // saleFinalizeBtn
             // 
-            this.saleFinalizeBtn.Location = new System.Drawing.Point(254, 255);
+            this.saleFinalizeBtn.Location = new System.Drawing.Point(214, 381);
             this.saleFinalizeBtn.Name = "saleFinalizeBtn";
             this.saleFinalizeBtn.Size = new System.Drawing.Size(146, 34);
             this.saleFinalizeBtn.TabIndex = 88;
-            this.saleFinalizeBtn.Text = "FInalize Sale";
+            this.saleFinalizeBtn.Text = "Finalize Sale";
             this.saleFinalizeBtn.UseVisualStyleBackColor = true;
-            // 
-            // cmbSalePackBarcode
-            // 
-            this.cmbSalePackBarcode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSalePackBarcode.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.cmbSalePackBarcode.FormattingEnabled = true;
-            this.cmbSalePackBarcode.Location = new System.Drawing.Point(171, 194);
-            this.cmbSalePackBarcode.Name = "cmbSalePackBarcode";
-            this.cmbSalePackBarcode.Size = new System.Drawing.Size(121, 26);
-            this.cmbSalePackBarcode.TabIndex = 87;
-            // 
-            // salePackQuantity
-            // 
-            this.salePackQuantity.Font = new System.Drawing.Font("Arial", 12F);
-            this.salePackQuantity.Location = new System.Drawing.Point(437, 195);
-            this.salePackQuantity.Name = "salePackQuantity";
-            this.salePackQuantity.Size = new System.Drawing.Size(100, 26);
-            this.salePackQuantity.TabIndex = 86;
-            this.salePackQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyIntNum_KeyPress);
-            // 
-            // lblSalePackQuantity
-            // 
-            this.lblSalePackQuantity.AutoSize = true;
-            this.lblSalePackQuantity.Location = new System.Drawing.Point(335, 195);
-            this.lblSalePackQuantity.Name = "lblSalePackQuantity";
-            this.lblSalePackQuantity.Size = new System.Drawing.Size(102, 25);
-            this.lblSalePackQuantity.TabIndex = 85;
-            this.lblSalePackQuantity.Text = "Quantity:";
-            // 
-            // lblSalePackBarcode
-            // 
-            this.lblSalePackBarcode.AutoSize = true;
-            this.lblSalePackBarcode.Location = new System.Drawing.Point(24, 195);
-            this.lblSalePackBarcode.Name = "lblSalePackBarcode";
-            this.lblSalePackBarcode.Size = new System.Drawing.Size(152, 25);
-            this.lblSalePackBarcode.TabIndex = 84;
-            this.lblSalePackBarcode.Text = "Pack Barcode:";
-            // 
-            // cmbSaleItemBarcode
-            // 
-            this.cmbSaleItemBarcode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSaleItemBarcode.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.cmbSaleItemBarcode.FormattingEnabled = true;
-            this.cmbSaleItemBarcode.Location = new System.Drawing.Point(170, 140);
-            this.cmbSaleItemBarcode.Name = "cmbSaleItemBarcode";
-            this.cmbSaleItemBarcode.Size = new System.Drawing.Size(121, 26);
-            this.cmbSaleItemBarcode.TabIndex = 83;
-            // 
-            // salesPayPalFeesTbx
-            // 
-            this.salesPayPalFeesTbx.Enabled = false;
-            this.salesPayPalFeesTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.salesPayPalFeesTbx.Location = new System.Drawing.Point(390, 380);
-            this.salesPayPalFeesTbx.Name = "salesPayPalFeesTbx";
-            this.salesPayPalFeesTbx.Size = new System.Drawing.Size(100, 26);
-            this.salesPayPalFeesTbx.TabIndex = 17;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Arial", 12F);
-            this.textBox5.Location = new System.Drawing.Point(623, 380);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 26);
-            this.textBox5.TabIndex = 16;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Arial", 12F);
-            this.textBox4.Location = new System.Drawing.Point(847, 380);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 26);
-            this.textBox4.TabIndex = 15;
-            // 
-            // lblSalesTotalCost
-            // 
-            this.lblSalesTotalCost.AutoSize = true;
-            this.lblSalesTotalCost.Location = new System.Drawing.Point(505, 381);
-            this.lblSalesTotalCost.Name = "lblSalesTotalCost";
-            this.lblSalesTotalCost.Size = new System.Drawing.Size(112, 25);
-            this.lblSalesTotalCost.TabIndex = 14;
-            this.lblSalesTotalCost.Text = "Total cost:";
-            // 
-            // saleItemQuantityTbx
-            // 
-            this.saleItemQuantityTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.saleItemQuantityTbx.Location = new System.Drawing.Point(437, 140);
-            this.saleItemQuantityTbx.Name = "saleItemQuantityTbx";
-            this.saleItemQuantityTbx.Size = new System.Drawing.Size(100, 26);
-            this.saleItemQuantityTbx.TabIndex = 13;
-            this.saleItemQuantityTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyIntNum_KeyPress);
-            // 
-            // ebayFeesTbx
-            // 
-            this.ebayFeesTbx.Enabled = false;
-            this.ebayFeesTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.ebayFeesTbx.Location = new System.Drawing.Point(143, 381);
-            this.ebayFeesTbx.Name = "ebayFeesTbx";
-            this.ebayFeesTbx.Size = new System.Drawing.Size(100, 26);
-            this.ebayFeesTbx.TabIndex = 12;
+            this.saleFinalizeBtn.Click += new System.EventHandler(this.saleFinalizeBtn_Click);
             // 
             // saleNumberTbx
             // 
             this.saleNumberTbx.Enabled = false;
             this.saleNumberTbx.Font = new System.Drawing.Font("Arial", 12F);
-            this.saleNumberTbx.Location = new System.Drawing.Point(171, 82);
+            this.saleNumberTbx.Location = new System.Drawing.Point(171, 71);
             this.saleNumberTbx.Name = "saleNumberTbx";
             this.saleNumberTbx.Size = new System.Drawing.Size(100, 26);
             this.saleNumberTbx.TabIndex = 11;
             // 
-            // lblSalesProfit
-            // 
-            this.lblSalesProfit.AutoSize = true;
-            this.lblSalesProfit.Location = new System.Drawing.Point(745, 381);
-            this.lblSalesProfit.Name = "lblSalesProfit";
-            this.lblSalesProfit.Size = new System.Drawing.Size(75, 25);
-            this.lblSalesProfit.TabIndex = 9;
-            this.lblSalesProfit.Text = "Profit:";
-            // 
-            // lblSalesPayPalFees
-            // 
-            this.lblSalesPayPalFees.AutoSize = true;
-            this.lblSalesPayPalFees.Location = new System.Drawing.Point(249, 381);
-            this.lblSalesPayPalFees.Name = "lblSalesPayPalFees";
-            this.lblSalesPayPalFees.Size = new System.Drawing.Size(135, 25);
-            this.lblSalesPayPalFees.TabIndex = 8;
-            this.lblSalesPayPalFees.Text = "PayPal Fees:";
-            // 
-            // lblSaleEbayFees
-            // 
-            this.lblSaleEbayFees.AutoSize = true;
-            this.lblSaleEbayFees.Location = new System.Drawing.Point(24, 381);
-            this.lblSaleEbayFees.Name = "lblSaleEbayFees";
-            this.lblSaleEbayFees.Size = new System.Drawing.Size(115, 25);
-            this.lblSaleEbayFees.TabIndex = 7;
-            this.lblSaleEbayFees.Text = "eBay Fees:";
-            // 
-            // lblSaleItemQuantity
-            // 
-            this.lblSaleItemQuantity.AutoSize = true;
-            this.lblSaleItemQuantity.Location = new System.Drawing.Point(335, 141);
-            this.lblSaleItemQuantity.Name = "lblSaleItemQuantity";
-            this.lblSaleItemQuantity.Size = new System.Drawing.Size(102, 25);
-            this.lblSaleItemQuantity.TabIndex = 5;
-            this.lblSaleItemQuantity.Text = "Quantity:";
-            // 
-            // lblSaleItemBarcode
-            // 
-            this.lblSaleItemBarcode.AutoSize = true;
-            this.lblSaleItemBarcode.Location = new System.Drawing.Point(24, 141);
-            this.lblSaleItemBarcode.Name = "lblSaleItemBarcode";
-            this.lblSaleItemBarcode.Size = new System.Drawing.Size(150, 25);
-            this.lblSaleItemBarcode.TabIndex = 4;
-            this.lblSaleItemBarcode.Text = "Item Barcode:";
-            // 
             // lblSaleID
             // 
             this.lblSaleID.AutoSize = true;
-            this.lblSaleID.Location = new System.Drawing.Point(23, 83);
+            this.lblSaleID.Location = new System.Drawing.Point(23, 72);
             this.lblSaleID.Name = "lblSaleID";
             this.lblSaleID.Size = new System.Drawing.Size(142, 25);
             this.lblSaleID.TabIndex = 3;
@@ -1535,11 +1760,207 @@
             this.lblAddSale.TabIndex = 2;
             this.lblAddSale.Text = "Add a New Sale";
             // 
+            // saleDetails
+            // 
+            this.saleDetails.Controls.Add(this.cmbSaleDetailsSelectSale);
+            this.saleDetails.Controls.Add(this.lblSaleDetailsSelectSale);
+            this.saleDetails.Controls.Add(this.saleCDSBtn);
+            this.saleDetails.Controls.Add(this.saleDetailsDgv);
+            this.saleDetails.Controls.Add(this.lblSaleDetails);
+            this.saleDetails.Location = new System.Drawing.Point(4, 34);
+            this.saleDetails.Name = "saleDetails";
+            this.saleDetails.Padding = new System.Windows.Forms.Padding(3);
+            this.saleDetails.Size = new System.Drawing.Size(1003, 587);
+            this.saleDetails.TabIndex = 5;
+            this.saleDetails.Text = "Sale Details";
+            this.saleDetails.UseVisualStyleBackColor = true;
+            this.saleDetails.Enter += new System.EventHandler(this.saleDetails_Enter);
+            // 
+            // cmbSaleDetailsSelectSale
+            // 
+            this.cmbSaleDetailsSelectSale.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSaleDetailsSelectSale.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.cmbSaleDetailsSelectSale.FormattingEnabled = true;
+            this.cmbSaleDetailsSelectSale.Location = new System.Drawing.Point(239, 454);
+            this.cmbSaleDetailsSelectSale.Name = "cmbSaleDetailsSelectSale";
+            this.cmbSaleDetailsSelectSale.Size = new System.Drawing.Size(121, 26);
+            this.cmbSaleDetailsSelectSale.TabIndex = 106;
+            this.cmbSaleDetailsSelectSale.Enter += new System.EventHandler(this.cmbSaleDetailsSelectSale_Enter);
+            // 
+            // lblSaleDetailsSelectSale
+            // 
+            this.lblSaleDetailsSelectSale.AutoSize = true;
+            this.lblSaleDetailsSelectSale.Location = new System.Drawing.Point(34, 453);
+            this.lblSaleDetailsSelectSale.Name = "lblSaleDetailsSelectSale";
+            this.lblSaleDetailsSelectSale.Size = new System.Drawing.Size(209, 25);
+            this.lblSaleDetailsSelectSale.TabIndex = 105;
+            this.lblSaleDetailsSelectSale.Text = "Select Sale Number: ";
+            // 
+            // saleCDSBtn
+            // 
+            this.saleCDSBtn.ForeColor = System.Drawing.Color.Black;
+            this.saleCDSBtn.Location = new System.Drawing.Point(34, 496);
+            this.saleCDSBtn.Name = "saleCDSBtn";
+            this.saleCDSBtn.Size = new System.Drawing.Size(199, 67);
+            this.saleCDSBtn.TabIndex = 104;
+            this.saleCDSBtn.Text = "Print Customs Declaration";
+            this.saleCDSBtn.UseVisualStyleBackColor = true;
+            this.saleCDSBtn.Click += new System.EventHandler(this.saleCDSBtn_Click);
+            // 
+            // saleDetailsDgv
+            // 
+            this.saleDetailsDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleDetailsDgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.saleDetailsDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.saleDetailsDgv.Location = new System.Drawing.Point(34, 92);
+            this.saleDetailsDgv.Name = "saleDetailsDgv";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleDetailsDgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.saleDetailsDgv.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleDetailsDgv.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.saleDetailsDgv.RowTemplate.ReadOnly = true;
+            this.saleDetailsDgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDetailsDgv.Size = new System.Drawing.Size(927, 326);
+            this.saleDetailsDgv.TabIndex = 103;
+            // 
+            // lblSaleDetails
+            // 
+            this.lblSaleDetails.AutoSize = true;
+            this.lblSaleDetails.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaleDetails.Location = new System.Drawing.Point(29, 22);
+            this.lblSaleDetails.Name = "lblSaleDetails";
+            this.lblSaleDetails.Size = new System.Drawing.Size(131, 25);
+            this.lblSaleDetails.TabIndex = 99;
+            this.lblSaleDetails.Text = "Sale Details:";
+            // 
+            // reports
+            // 
+            this.reports.Controls.Add(this.reportsBestSellerBtn);
+            this.reports.Controls.Add(this.reportsShippingBtn);
+            this.reports.Controls.Add(this.reportsClientsBtn);
+            this.reports.Controls.Add(this.reportsPacksAboutToEndBtn);
+            this.reports.Controls.Add(this.reportsItemsAboutToEndBtn);
+            this.reports.Controls.Add(this.reportsPacksInStockBtn);
+            this.reports.Controls.Add(this.reportsItemsInStockBtn);
+            this.reports.Controls.Add(this.lblReports);
+            this.reports.Location = new System.Drawing.Point(4, 34);
+            this.reports.Name = "reports";
+            this.reports.Padding = new System.Windows.Forms.Padding(3);
+            this.reports.Size = new System.Drawing.Size(1003, 587);
+            this.reports.TabIndex = 6;
+            this.reports.Text = "Reports";
+            this.reports.UseVisualStyleBackColor = true;
+            // 
+            // reportsBestSellerBtn
+            // 
+            this.reportsBestSellerBtn.Location = new System.Drawing.Point(531, 239);
+            this.reportsBestSellerBtn.Name = "reportsBestSellerBtn";
+            this.reportsBestSellerBtn.Size = new System.Drawing.Size(137, 34);
+            this.reportsBestSellerBtn.TabIndex = 107;
+            this.reportsBestSellerBtn.Text = "Best Sellers";
+            this.reportsBestSellerBtn.UseVisualStyleBackColor = true;
+            this.reportsBestSellerBtn.Click += new System.EventHandler(this.reportsBestSellerBtn_Click);
+            // 
+            // reportsShippingBtn
+            // 
+            this.reportsShippingBtn.Location = new System.Drawing.Point(273, 312);
+            this.reportsShippingBtn.Name = "reportsShippingBtn";
+            this.reportsShippingBtn.Size = new System.Drawing.Size(395, 34);
+            this.reportsShippingBtn.TabIndex = 106;
+            this.reportsShippingBtn.Text = "Shipping Destinations and Charges";
+            this.reportsShippingBtn.UseVisualStyleBackColor = true;
+            // 
+            // reportsClientsBtn
+            // 
+            this.reportsClientsBtn.Location = new System.Drawing.Point(273, 239);
+            this.reportsClientsBtn.Name = "reportsClientsBtn";
+            this.reportsClientsBtn.Size = new System.Drawing.Size(137, 34);
+            this.reportsClientsBtn.TabIndex = 105;
+            this.reportsClientsBtn.Text = "Clients";
+            this.reportsClientsBtn.UseVisualStyleBackColor = true;
+            this.reportsClientsBtn.Click += new System.EventHandler(this.reportsClientsBtn_Click);
+            // 
+            // reportsPacksAboutToEndBtn
+            // 
+            this.reportsPacksAboutToEndBtn.Location = new System.Drawing.Point(458, 164);
+            this.reportsPacksAboutToEndBtn.Name = "reportsPacksAboutToEndBtn";
+            this.reportsPacksAboutToEndBtn.Size = new System.Drawing.Size(210, 34);
+            this.reportsPacksAboutToEndBtn.TabIndex = 104;
+            this.reportsPacksAboutToEndBtn.Text = "Packs About to End";
+            this.reportsPacksAboutToEndBtn.UseVisualStyleBackColor = true;
+            this.reportsPacksAboutToEndBtn.Click += new System.EventHandler(this.ItemsPacksReports);
+            // 
+            // reportsItemsAboutToEndBtn
+            // 
+            this.reportsItemsAboutToEndBtn.Location = new System.Drawing.Point(458, 85);
+            this.reportsItemsAboutToEndBtn.Name = "reportsItemsAboutToEndBtn";
+            this.reportsItemsAboutToEndBtn.Size = new System.Drawing.Size(210, 34);
+            this.reportsItemsAboutToEndBtn.TabIndex = 103;
+            this.reportsItemsAboutToEndBtn.Text = "Item About to End";
+            this.reportsItemsAboutToEndBtn.UseVisualStyleBackColor = true;
+            this.reportsItemsAboutToEndBtn.Click += new System.EventHandler(this.ItemsPacksReports);
+            // 
+            // reportsPacksInStockBtn
+            // 
+            this.reportsPacksInStockBtn.Location = new System.Drawing.Point(273, 164);
+            this.reportsPacksInStockBtn.Name = "reportsPacksInStockBtn";
+            this.reportsPacksInStockBtn.Size = new System.Drawing.Size(163, 34);
+            this.reportsPacksInStockBtn.TabIndex = 102;
+            this.reportsPacksInStockBtn.Text = "Packs in Stock";
+            this.reportsPacksInStockBtn.UseVisualStyleBackColor = true;
+            this.reportsPacksInStockBtn.Click += new System.EventHandler(this.ItemsPacksReports);
+            // 
+            // reportsItemsInStockBtn
+            // 
+            this.reportsItemsInStockBtn.Location = new System.Drawing.Point(273, 85);
+            this.reportsItemsInStockBtn.Name = "reportsItemsInStockBtn";
+            this.reportsItemsInStockBtn.Size = new System.Drawing.Size(163, 34);
+            this.reportsItemsInStockBtn.TabIndex = 101;
+            this.reportsItemsInStockBtn.Text = "Ites in Stock";
+            this.reportsItemsInStockBtn.UseVisualStyleBackColor = true;
+            this.reportsItemsInStockBtn.Click += new System.EventHandler(this.ItemsPacksReports);
+            // 
+            // lblReports
+            // 
+            this.lblReports.AutoSize = true;
+            this.lblReports.Font = new System.Drawing.Font("Elephant", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReports.Location = new System.Drawing.Point(40, 27);
+            this.lblReports.Name = "lblReports";
+            this.lblReports.Size = new System.Drawing.Size(95, 25);
+            this.lblReports.TabIndex = 100;
+            this.lblReports.Text = "Reports:";
+            // 
+            // addShippingClearBtn
+            // 
+            this.addShippingClearBtn.Location = new System.Drawing.Point(517, 520);
+            this.addShippingClearBtn.Name = "addShippingClearBtn";
+            this.addShippingClearBtn.Size = new System.Drawing.Size(96, 32);
+            this.addShippingClearBtn.TabIndex = 86;
+            this.addShippingClearBtn.Text = "Clear";
+            this.addShippingClearBtn.UseVisualStyleBackColor = true;
+            this.addShippingClearBtn.Visible = false;
+            this.addShippingClearBtn.Click += new System.EventHandler(this.addShippingClearBtn_Click);
+            // 
             // Welcome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 539);
+            this.ClientSize = new System.Drawing.Size(1011, 625);
             this.Controls.Add(this.Main);
             this.Controls.Add(this.startBtn);
             this.Controls.Add(this.welcomeTbx);
@@ -1554,12 +1975,26 @@
             this.addItemPackTb.ResumeLayout(false);
             this.addItemGb.ResumeLayout(false);
             this.addItemGb.PerformLayout();
-            this.addPackegGb.ResumeLayout(false);
-            this.addPackegGb.PerformLayout();
+            this.addPackGb.ResumeLayout(false);
+            this.addPackGb.PerformLayout();
             this.shipping.ResumeLayout(false);
             this.shipping.PerformLayout();
             this.sales.ResumeLayout(false);
             this.sales.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.saleExistViewDgv)).EndInit();
+            this.saleExistGb.ResumeLayout(false);
+            this.saleExistGb.PerformLayout();
+            this.saleClientGb.ResumeLayout(false);
+            this.saleClientGb.PerformLayout();
+            this.saleAddPackGb.ResumeLayout(false);
+            this.saleAddPackGb.PerformLayout();
+            this.saleAddItemGb.ResumeLayout(false);
+            this.saleAddItemGb.PerformLayout();
+            this.saleDetails.ResumeLayout(false);
+            this.saleDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.saleDetailsDgv)).EndInit();
+            this.reports.ResumeLayout(false);
+            this.reports.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1646,28 +2081,14 @@
         private System.Windows.Forms.Button updateShippingBtn;
         private System.Windows.Forms.Button updateClientBtn;
         private System.Windows.Forms.ComboBox cmbSalePackBarcode;
-        private System.Windows.Forms.TextBox salePackQuantity;
+        private System.Windows.Forms.TextBox salePackQuantityTbx;
         private System.Windows.Forms.Label lblSalePackQuantity;
         private System.Windows.Forms.Label lblSalePackBarcode;
-        private System.Windows.Forms.ComboBox cmbSaleItemBarcode;
-        private System.Windows.Forms.TextBox salesPayPalFeesTbx;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label lblSalesTotalCost;
-        private System.Windows.Forms.TextBox saleItemQuantityTbx;
-        private System.Windows.Forms.TextBox ebayFeesTbx;
         private System.Windows.Forms.TextBox saleNumberTbx;
-        private System.Windows.Forms.Label lblSalesProfit;
-        private System.Windows.Forms.Label lblSalesPayPalFees;
-        private System.Windows.Forms.Label lblSaleEbayFees;
-        private System.Windows.Forms.Label lblSaleItemQuantity;
-        private System.Windows.Forms.Label lblSaleItemBarcode;
         private System.Windows.Forms.Label lblSaleID;
         private System.Windows.Forms.Label lblAddSale;
         private System.Windows.Forms.TextBox salePaymentTbx;
         private System.Windows.Forms.Label lblSalePaymentReceived;
-        private System.Windows.Forms.Label lblSaleDetails;
-        private System.Windows.Forms.Button saleAddItemBtn;
         private System.Windows.Forms.Button saleFinalizeBtn;
         private System.Windows.Forms.GroupBox addItemGb;
         private System.Windows.Forms.Button updateItemBtn;
@@ -1683,7 +2104,7 @@
         private System.Windows.Forms.Label lblWeight;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblBarcode;
-        private System.Windows.Forms.GroupBox addPackegGb;
+        private System.Windows.Forms.GroupBox addPackGb;
         private System.Windows.Forms.Button updatePackBtn;
         private System.Windows.Forms.TextBox packQuantityTbx;
         private System.Windows.Forms.Label lblPackQuantity;
@@ -1697,6 +2118,47 @@
         private System.Windows.Forms.Label lblPackWeight;
         private System.Windows.Forms.Label lblPackDescription;
         private System.Windows.Forms.Label lblPackBarcode;
+        private System.Windows.Forms.Button saleAddPackBtn;
+        private System.Windows.Forms.GroupBox saleAddPackGb;
+        private System.Windows.Forms.GroupBox saleAddItemGb;
+        private System.Windows.Forms.Button saleAddItemBtn;
+        private System.Windows.Forms.ComboBox cmbSaleItemBarcode;
+        private System.Windows.Forms.TextBox saleItemQuantityTbx;
+        private System.Windows.Forms.Label lblSaleItemQuantity;
+        private System.Windows.Forms.Label lblSaleItemBarcode;
+        private System.Windows.Forms.TextBox lblSaleInfo;
+        private System.Windows.Forms.CheckBox internationalSite;
+        private System.Windows.Forms.TabPage saleDetails;
+        private System.Windows.Forms.GroupBox saleClientGb;
+        private System.Windows.Forms.ComboBox cmbSaleEmails;
+        private System.Windows.Forms.Label lblSaleClientEmail;
+        private System.Windows.Forms.Label lblSaleDetails;
+        private System.Windows.Forms.GroupBox saleExistGb;
+        private System.Windows.Forms.TextBox saleExistTbx;
+        private System.Windows.Forms.Button saleExistDeleteBtn;
+        private System.Windows.Forms.Button saleExistFinalizeBtn;
+        private System.Windows.Forms.Button saleExistViewDetailsBtn;
+        private System.Windows.Forms.DataGridView saleExistViewDgv;
+        private System.Windows.Forms.RadioButton saleShippingNoRbt;
+        private System.Windows.Forms.RadioButton saleShippingRegYesRbt;
+        private System.Windows.Forms.Label lblSaleREgidteredShipping;
+        private System.Windows.Forms.DataGridView saleDetailsDgv;
+        private System.Windows.Forms.TabPage reports;
+        private System.Windows.Forms.Button saleCDSBtn;
+        private System.Windows.Forms.Label lblSaleDetailsSelectSale;
+        private System.Windows.Forms.ComboBox cmbSaleDetailsSelectSale;
+        private System.Windows.Forms.Button reportsBestSellerBtn;
+        private System.Windows.Forms.Button reportsShippingBtn;
+        private System.Windows.Forms.Button reportsClientsBtn;
+        private System.Windows.Forms.Button reportsPacksAboutToEndBtn;
+        private System.Windows.Forms.Button reportsItemsAboutToEndBtn;
+        private System.Windows.Forms.Button reportsPacksInStockBtn;
+        private System.Windows.Forms.Button reportsItemsInStockBtn;
+        private System.Windows.Forms.Label lblReports;
+        private System.Windows.Forms.Button addItemClearBtn;
+        private System.Windows.Forms.Button addPackClearBtn;
+        private System.Windows.Forms.Button addClientClearBtn;
+        private System.Windows.Forms.Button addShippingClearBtn;
     }
 }
 

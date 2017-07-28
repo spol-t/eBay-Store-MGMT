@@ -159,6 +159,33 @@ namespace StoreMGMT
             }
         }
 
+        //return an Double the database
+        protected double ExecuteScalarDoubleQuery(MySqlCommand command)
+        {
+            double num = 0;
+            //Locking database chanel
+            lock (connection)
+            {
+                OpenConnection();
+                command.Connection = connection;
+                try
+                {
+                    //Execute command.text qery of th DB
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        num = Convert.ToDouble(result);
+                    }
+                }
+                finally
+                {
+                    //Closing the connection and restoring the lock
+                    Disconnect();
+                }
+                return num;
+            }
+        }
+
         //send a query that returns a number of arguments
         protected DataSet GetMultipleQuery(MySqlCommand command)
         {

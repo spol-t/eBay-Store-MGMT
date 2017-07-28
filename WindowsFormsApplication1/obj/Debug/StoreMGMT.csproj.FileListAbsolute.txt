@@ -9,3 +9,4 @@ C:\Users\Tomer\documents\visual studio 2015\Projects\Store MGMT\WindowsFormsAppl
 C:\Users\Tomer\documents\visual studio 2015\Projects\Store MGMT\WindowsFormsApplication1\bin\Debug\MySql.Data.dll
 C:\Users\Tomer\documents\visual studio 2015\Projects\Store MGMT\WindowsFormsApplication1\bin\Debug\MySql.Data.xml
 C:\Users\Tomer\documents\visual studio 2015\Projects\Store MGMT\WindowsFormsApplication1\obj\Debug\StoreMGMT.csprojResolveAssemblyReference.cache
+C:\Users\Tomer\Documents\Visual Studio 2015\Projects\Store MGMT\WindowsFormsApplication1\bin\Debug\itextsharp.xml
