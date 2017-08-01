@@ -37,6 +37,7 @@ namespace StoreMGMT
         private double paypalFinalValFee = 0.029;
         private int itemsInSale = 0;
         private int packsInSale = 0;
+        private bool updateSettingsFlag = false;
 
 
         public Welcome()
@@ -48,9 +49,6 @@ namespace StoreMGMT
         {
             
         }
-
-
-
         
         //Move to the setting s screen
         private void startBtn_Click(object sender, EventArgs e)
@@ -61,18 +59,21 @@ namespace StoreMGMT
             { 
                 storeSettings = File.ReadAllLines(settingsFilePath);
                 FillSetingsTab();
-                settingsTb.Enabled = false;
+                settingsPanel.Enabled = false;
+                settingsUpdateBtn.Enabled = true;
             }
             else
             {
                 addItemPackTb.Enabled = false;
                 addClientTb.Enabled = false;
+                shippingTb.Enabled = false;
+                salesTb.Enabled = false;
+                saleDetailsTb.Enabled = false;
+                reportsTb.Enabled = false;
+                settingsUpdateBtn.Enabled = false;
             }
         }
-
-
-
-
+       
 
         #region Input Validation
 
@@ -155,6 +156,7 @@ namespace StoreMGMT
             storeType = (string)cmb.SelectedValue;
         }
 
+        //applay settings
         private void applySettingsBtn_Click(object sender, EventArgs e)
             {
             
@@ -328,8 +330,8 @@ namespace StoreMGMT
                 errorTbx.Visible = false;
                 
                 //Address2 is optional
-                if (!string.IsNullOrEmpty(user.Address2))
-                    storeSettings[5] = user.Address2;
+                if (!string.IsNullOrEmpty(userAddress2Tbx.Text))
+                    storeSettings[5] = userAddress2Tbx.Text;
                 else
                     storeSettings[5] = "";
 
@@ -342,12 +344,35 @@ namespace StoreMGMT
                     tw.Close();
                 }
 
-                settingsTb.Enabled = false;
+                settingsPanel.Enabled = false;
+                settingsUpdateBtn.Enabled = true;
                 addItemPackTb.Enabled = true;
                 addClientTb.Enabled = true;
+                shippingTb.Enabled = true;
+                salesTb.Enabled = true;
+                saleDetailsTb.Enabled = true;
+                reportsTb.Enabled = true;
                 lblAddItemInfo.Visible = false;
             }
 
+        }
+
+
+        //update settings
+        private void settingsUpdateBtn_Click(object sender, EventArgs e)
+        {
+            //disable all tabs exspt from settings tab
+            addItemPackTb.Enabled = false;
+            addClientTb.Enabled = false;
+            shippingTb.Enabled = false;
+            salesTb.Enabled = false;
+            saleDetailsTb.Enabled = false;
+            reportsTb.Enabled = false;
+            settingsUpdateBtn.Enabled = false;
+            settingsPanel.Enabled = true;
+
+            //disable update button;
+            settingsUpdateBtn.Enabled = false;
         }
         #endregion
 
@@ -423,7 +448,7 @@ namespace StoreMGMT
             }
             else
             {
-                if (DB.IsItemPackExist(item.Barcode, "items"))
+                if (DB.IsItemPackExist(item.Barcode, "items", ""))
                 {
                     lblAddItemInfo.Text = "item already exist, would you like to update it?";
                     lblAddItemInfo.Visible = true;
@@ -532,7 +557,7 @@ namespace StoreMGMT
             }
             else
             {
-                if (DB.IsItemPackExist(pack.Barcode, "packs"))
+                if (DB.IsItemPackExist(pack.Barcode, "packs" , ""))
                 {
                     lblAddPackInfo.Text = "pack already exist, would you like to update it?";
                     lblAddPackInfo.Visible = true;
@@ -546,7 +571,7 @@ namespace StoreMGMT
                     lblAddPackInfo.Visible = true;
                     DB.InsertPack(pack);
                     ClearItem(pack);
-                    ClearTextBoxes(addPackGb);
+                    ClearTextBoxes(addPackGb);    
                 }
             }
         }
@@ -850,7 +875,7 @@ namespace StoreMGMT
                 else
                 {
                     DB.InsertShipment(ship);
-                    ClearTextBoxes(shipping);
+                    ClearTextBoxes(shippingTb);
                     shippingErrorTbx.Text = "Shipping add seccessfully";
                     shippingErrorTbx.ForeColor = Color.Blue;
                     shippingErrorTbx.Visible = true;
@@ -863,7 +888,7 @@ namespace StoreMGMT
         private void updateShippingBtn_Click(object sender, EventArgs e)
         {
             DB.UpdateShipping(ship);
-            ClearTextBoxes(shipping);
+            ClearTextBoxes(shippingTb);
             shippingErrorTbx.Text = "Shipping Updated Secssesfully";
             updateShippingBtn.Visible = false;
             addShippingClearBtn.Visible = false;
@@ -871,7 +896,7 @@ namespace StoreMGMT
 
         private void addShippingClearBtn_Click(object sender, EventArgs e)
         {
-            ClearTextBoxes(shipping);
+            ClearTextBoxes(shippingTb);
             updateShippingBtn.Visible = false;
             addShippingClearBtn.Visible = false;
         }
@@ -884,6 +909,9 @@ namespace StoreMGMT
         {
             //fill sale number text box when moving to sales tab
              saleNumberTbx.Text = Convert.ToString(DB.GetNextSaleNum());
+
+            //Uplod data to the DataGridView
+            saleExistViewDgv.DataSource = DB.GetExistingSaleDetails(Convert.ToInt32(saleNumberTbx.Text));
 
             //check if the sale process for the above sale number was strated before
             if (DB.IsSaleEmpty(Convert.ToInt32(saleNumberTbx.Text)) != "yes")
@@ -975,7 +1003,8 @@ namespace StoreMGMT
                 lblSaleInfo.ForeColor = Color.Red;
                 lblSaleInfo.Visible = true;
             }
-            else
+            else if (DB.IsThereEnoughStock(cmbSaleItemBarcode.Text, "items",
+                Convert.ToInt16(saleItemQuantityTbx.Text))) 
             {
                 DB.UpdateSaleDetails(Convert.ToInt32(saleNumberTbx.Text), 
                     (string)cmbSaleItemBarcode.SelectedItem, 
@@ -988,7 +1017,20 @@ namespace StoreMGMT
                 lblSaleInfo.ForeColor = Color.Blue;
                 lblSaleInfo.Visible = true;
                 ClearTextBoxes(saleAddItemGb);
+                if (saleExistViewDgv.Visible == true)
+                {
+                    saleExistViewDgv.DataSource = DB.GetExistingSaleDetails(Convert.ToInt32(saleNumberTbx.Text));
+                    saleExistViewDgv.Update();
+                    saleExistViewDgv.Refresh();
+                }
             }
+            else 
+            {
+                lblSaleInfo.Text = "There are not enough items in stock!";
+                lblSaleInfo.ForeColor = Color.Red;
+                lblSaleInfo.Visible = true;
+            }
+            
         }
 
         //Adding an item to a sale
@@ -1025,7 +1067,8 @@ namespace StoreMGMT
                 lblSaleInfo.ForeColor = Color.Red;
                 lblSaleInfo.Visible = true;
             }
-            else
+            else if (DB.IsThereEnoughStock(cmbSalePackBarcode.Text, "packs", 
+                Convert.ToInt16(salePackQuantityTbx.Text)))
             {
                 DB.UpdateSaleDetails(Convert.ToInt32(saleNumberTbx.Text),
                     (string)cmbSalePackBarcode.SelectedItem,
@@ -1038,6 +1081,18 @@ namespace StoreMGMT
                 lblSaleInfo.ForeColor = Color.Blue;
                 lblSaleInfo.Visible = true;
                 ClearTextBoxes(saleAddPackGb);
+                if (saleExistViewDgv.Visible == true)
+                {
+                    saleExistViewDgv.DataSource = DB.GetExistingSaleDetails(Convert.ToInt32(saleNumberTbx.Text));
+                    saleExistViewDgv.Update();
+                    saleExistViewDgv.Refresh();
+                }
+            }
+            else
+            {
+                lblSaleInfo.Text = "There are not enough packs in stock!";
+                lblSaleInfo.ForeColor = Color.Red;
+                lblSaleInfo.Visible = true;
             }
         }
 
@@ -1107,7 +1162,7 @@ namespace StoreMGMT
                     DB.GetClientCountry(s.ClientEmail));
                 if (s.Shipiing == 0)
                 {
-                    lblSaleInfo.ForeColor = Color.Blue;
+                    lblSaleInfo.ForeColor = Color.Red;
                     lblSaleInfo.Text = "You don't have a shipping methode that contain " +
                         "the total items weight, Please add a new shipping methode";
                     lblSaleInfo.Visible = true;
@@ -1120,7 +1175,7 @@ namespace StoreMGMT
                     s.NumOfPacks = DB.GetNumOfItemsInSale(s.Number, "pack");
                     s.TotalPacksCost = DB.GetTotalItemsCost(s.Number, "pack");
                     s.TotalWeight = DB.GetTotalWeight(s.Number);
-                    s.TotalEbayFees = DB.GetEbayFees(s.Number, myStore.Type, payment, internationalSite.Checked);
+                    s.TotalEbayFees = DB.GetEbayFees(s.Number, storeSettings[1], payment, internationalSite.Checked);
                     s.TotalPayPalFees = (payment * paypalFinalValFee) + paypalConFee;
                     s.ClientEmail = (string)cmbSaleEmails.SelectedItem;
 
@@ -1134,7 +1189,7 @@ namespace StoreMGMT
                     //cleen all the cells
                     saleExistGb.Visible = false;
                     saleExistViewDgv.Visible = false;
-                    ClearTextBoxes(sales);
+                    ClearTextBoxes(salesTb);
                     lblSaleInfo.ForeColor = Color.Blue;
                     lblSaleInfo.Text = "Sale Complited!";
                     lblSaleInfo.Visible = true;
@@ -1143,13 +1198,6 @@ namespace StoreMGMT
                     saleNumberTbx.Text = Convert.ToString(DB.GetNextSaleNum());
                 }
             }
-        }
-
-        //view sale in process details
-        private void saleExistViewDetailsBtn_Click(object sender, EventArgs e)
-        {
-            saleExistViewDgv.Visible = true;
-            saleExistViewDgv.DataSource = DB.GetExistingSaleDetails(Convert.ToInt32(saleNumberTbx.Text));
         }
 
         private void saleExistFinalizeBtn_Click(object sender, EventArgs e)
@@ -1200,6 +1248,9 @@ namespace StoreMGMT
             if (requiered == 3)
             {
                 Sale s = new Sale();
+                s.Number = Convert.ToInt32(saleNumberTbx.Text);
+                s.TotalWeight = DB.GetTotalWeight(s.Number);
+                s.ClientEmail = (string)cmbSaleEmails.SelectedItem;
                 s.Shipiing = DB.GetShippingCosts(s.TotalWeight, Convert.ToInt32(saleShippingRegYesRbt.Checked),
                     DB.GetClientCountry(s.ClientEmail));
                 if (s.Shipiing == 0)
@@ -1211,16 +1262,12 @@ namespace StoreMGMT
                 }
                 else
                 {
-                    s.Number = Convert.ToInt32(saleNumberTbx.Text);
                     s.NumOfItems = DB.GetNumOfItemsInSale(s.Number, "item");
                     s.TotalItemsCost = DB.GetTotalItemsCost(s.Number, "item");
                     s.NumOfPacks = DB.GetNumOfItemsInSale(s.Number, "pack");
-                    s.TotalPacksCost = DB.GetTotalItemsCost(s.Number, "pack");
-                    s.TotalWeight = DB.GetTotalWeight(s.Number);
-                    s.TotalEbayFees = DB.GetEbayFees(s.Number, myStore.Type, payment, internationalSite.Checked);
+                    s.TotalPacksCost = DB.GetTotalItemsCost(s.Number, "pack"); 
+                    s.TotalEbayFees = DB.GetEbayFees(s.Number, storeSettings[1], payment, internationalSite.Checked);
                     s.TotalPayPalFees = (payment * paypalFinalValFee) + paypalConFee;
-                    s.ClientEmail = (string)cmbSaleEmails.SelectedItem;
-
                     s.Income = payment;
                     s.TotalCost = s.TotalItemsCost + s.TotalPacksCost + s.TotalEbayFees +
                         s.TotalPayPalFees + s.Shipiing;
@@ -1231,7 +1278,7 @@ namespace StoreMGMT
                     //cleen all the cells
                     saleExistGb.Visible = false;
                     saleExistViewDgv.Visible = false;
-                    ClearTextBoxes(sales);
+                    ClearTextBoxes(salesTb);
                     lblSaleInfo.ForeColor = Color.Blue;
                     lblSaleInfo.Text = "Sale Complited!";
                     lblSaleInfo.Visible = true;
@@ -1254,11 +1301,22 @@ namespace StoreMGMT
             lblSaleInfo.Text = "Sale Was Deleted";
             lblSaleInfo.ForeColor = Color.Blue;
             lblSaleInfo.Visible = true;
+            ClearTextBoxes(salesTb);
+
+            //get next sale number
+            saleNumberTbx.Text = Convert.ToString(DB.GetNextSaleNum());
         }
 
         #endregion
 
         #region Sales Details
+
+        //upload the data to the DataGridView
+        private void saleDetails_Enter(object sender, EventArgs e)
+        {
+            saleDetailsDgv.DataSource = DB.GetSalesDetails();
+        }
+
 
         //update sale number combobox in sdale details
         private void cmbSaleDetailsSelectSale_Enter(object sender, EventArgs e)
@@ -1276,10 +1334,6 @@ namespace StoreMGMT
             }
         }
 
-        private void saleDetails_Enter(object sender, EventArgs e)
-        {
-            saleDetailsDgv.DataSource = DB.GetSalesDetails();
-        }
 
         private void saleCDSBtn_Click(object sender, EventArgs e)
         {
@@ -1395,7 +1449,7 @@ namespace StoreMGMT
                 itemsTable.AddCell(itemsValue);
 
                 //items details table from the database
-                DataTable items = DB.GetItemfForCDS(
+                DataTable items = DB.GetItemsForCDS(
                     Convert.ToInt32(cmbSaleDetailsSelectSale.SelectedItem));
 
                 //the total weight of the items
@@ -1502,19 +1556,25 @@ namespace StoreMGMT
                 //May Be Opened Officially notice
                 PdfPCell noticeCell = new PdfPCell(new Phrase("May Be Opened Officially", normal10Font));
                 noticeCell.BorderWidth = 2f;
-                noticeCell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER; ;
+                noticeCell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER; 
                 mainTable.AddCell(noticeCell);
 
                 //Sender details
                 PdfPCell senderCell = new PdfPCell();
                 senderCell.BorderWidth = 2f;
                 senderCell.AddElement(fromTable);
+                senderCell.Border = iTextSharp.text.Rectangle.LEFT_BORDER |
+                    iTextSharp.text.Rectangle.TOP_BORDER |
+                    iTextSharp.text.Rectangle.BOTTOM_BORDER;
                 mainTable.AddCell(senderCell);
 
                 //recepient details
                 PdfPCell clientCell = new PdfPCell();
                 clientCell.BorderWidth = 2f;
                 clientCell.AddElement(toTable);
+                clientCell.Border = iTextSharp.text.Rectangle.RIGHT_BORDER |
+                    iTextSharp.text.Rectangle.TOP_BORDER |
+                    iTextSharp.text.Rectangle.BOTTOM_BORDER;
                 mainTable.AddCell(clientCell);
 
                 //table of contents
@@ -1905,7 +1965,7 @@ namespace StoreMGMT
         //generate clients details report
         private void reportsClientsBtn_Click(object sender, EventArgs e)
         {
-            Document doc = new Document();
+            Document doc = new Document(new RectangleReadOnly(842, 595), 88f, 88f, 10f, 10f);
 
             //Get the current date
             DateTime thisDay = DateTime.Today;
@@ -1936,9 +1996,9 @@ namespace StoreMGMT
             iTextSharp.text.Font headerFont = new iTextSharp.text.Font(
                 iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.ITALIC);
 
-            //normal font size 10pt
-            iTextSharp.text.Font normal10Font = new iTextSharp.text.Font(
-                iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.NORMAL,
+            //normal font size 8pt
+            iTextSharp.text.Font normal8Font = new iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL,
                 tableTextColor);
 
             //bold font size 10pt
@@ -2030,7 +2090,7 @@ namespace StoreMGMT
                 for (int j = 0; j < 10; j++)
                 {
                     PdfPCell clientD = new PdfPCell(new Phrase(
-                        Convert.ToString(clientsDT.Rows[i].ItemArray[j]), normal10Font));
+                        Convert.ToString(clientsDT.Rows[i].ItemArray[j]), normal8Font));
 
                     clientD.Border = iTextSharp.text.Rectangle.NO_BORDER;
 
@@ -2081,6 +2141,153 @@ namespace StoreMGMT
             System.Diagnostics.Process.Start(fileName);
         }
 
+        private void reportsShippingBtn_Click(object sender, EventArgs e)
+        {
+            Document doc = new Document();
+
+            //Get the current date
+            DateTime thisDay = DateTime.Today;
+
+            //creating a PDF file
+            string fileName = ".\\Documents\\shippingDetails_" + thisDay.ToString("ddMMyyyy") + ".pdf";
+            string tableHeader = "Shipping Details " + thisDay.ToString("dd/MM/yyyy");
+
+            DataTable shippingDT = DB.GetShipping();
+
+            try
+            {
+                FileStream pdfFile = new FileStream(fileName, FileMode.Create);
+                PdfWriter writer = PdfWriter.GetInstance(doc, pdfFile);
+            }
+            catch
+            {
+                MessageBox.Show("Please close the open file first");
+                return;
+            }
+
+            iTextSharp.text.BaseColor tableTextColor = new iTextSharp.text.BaseColor(0, 0, 255);
+            iTextSharp.text.BaseColor tableCellColor = new iTextSharp.text.BaseColor(255, 255, 180);
+
+            //------------------fonts----------------
+
+            //Header font
+            iTextSharp.text.Font headerFont = new iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.ITALIC);
+
+            //normal font size 10pt
+            iTextSharp.text.Font normal8Font = new iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL,
+                tableTextColor);
+
+            //bold font size 10pt
+            iTextSharp.text.Font bold10Font = new iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.BOLD,
+                tableTextColor);
+
+            //Header
+            Paragraph header = new Paragraph("Created by StoreMGMT \u00a9", headerFont);
+            header.Alignment = Element.ALIGN_CENTER;
+
+
+            //Table Header
+            Paragraph tableHeaderP = new Paragraph(tableHeader, headerFont);
+            tableHeaderP.Alignment = Element.ALIGN_CENTER;
+
+
+            //main table
+            PdfPTable shippingTable = new PdfPTable(5);
+            shippingTable.WidthPercentage = 100;
+
+            //Country column header
+            PdfPCell shippingCountryCell = new PdfPCell(new Phrase("Country", bold10Font));
+            shippingCountryCell.BorderWidth = 2f;
+            shippingCountryCell.Border = iTextSharp.text.Rectangle.TOP_BORDER |
+                    iTextSharp.text.Rectangle.LEFT_BORDER;
+            shippingTable.AddCell(shippingCountryCell);
+
+            //Min Weight column header
+            PdfPCell shippingMinWeightCell = new PdfPCell(new Phrase("Min Weight", bold10Font));
+            shippingMinWeightCell.BorderWidth = 2f;
+            shippingMinWeightCell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+            shippingTable.AddCell(shippingMinWeightCell);
+
+            //Max Weight column header
+            PdfPCell shippingMaxWeightCell = new PdfPCell(new Phrase("Max Weight", bold10Font));
+            shippingMaxWeightCell.BorderWidth = 2f;
+            shippingMaxWeightCell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+            shippingTable.AddCell(shippingMaxWeightCell);
+
+            //Is Registered column header
+            PdfPCell shippingRegCell = new PdfPCell(new Phrase("Is Registered", bold10Font));
+            shippingRegCell.BorderWidth = 2f;
+            shippingRegCell.Border = iTextSharp.text.Rectangle.TOP_BORDER;
+            shippingTable.AddCell(shippingRegCell);
+
+            
+            //Phone number column header
+            PdfPCell shippingPriceCell = new PdfPCell(new Phrase("Price", bold10Font));
+            shippingPriceCell.BorderWidth = 2f;
+            shippingPriceCell.Border = iTextSharp.text.Rectangle.TOP_BORDER |
+                iTextSharp.text.Rectangle.RIGHT_BORDER; ;
+            shippingTable.AddCell(shippingPriceCell);
+
+            //insert the details into the table
+            for (int i = 0; i < shippingDT.Rows.Count; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    PdfPCell shippingD = new PdfPCell(new Phrase(
+                        Convert.ToString(shippingDT.Rows[i].ItemArray[j]), normal8Font));
+
+                    shippingD.Border = iTextSharp.text.Rectangle.NO_BORDER;
+
+                    if (i % 2 == 0)
+                        shippingD.BackgroundColor = tableCellColor;
+
+                    if (i == shippingDT.Rows.Count - 1)
+                    {
+                        shippingD.Border = iTextSharp.text.Rectangle.BOTTOM_BORDER;
+                        shippingD.BorderWidth = 2f;
+                    }
+
+                    if (j == 0)
+                    {
+                        shippingD.Border += iTextSharp.text.Rectangle.LEFT_BORDER;
+                        shippingD.BorderWidth = 2f;
+                    }
+
+                    if (j == 4)
+                    {
+                        shippingD.Border += iTextSharp.text.Rectangle.RIGHT_BORDER;
+                        shippingD.BorderWidth = 2f;
+                    }
+
+                    shippingTable.AddCell(shippingD);
+                }
+
+            }
+
+
+            //open the document for writing
+            doc.Open();
+
+            //dic header
+            doc.Add(header);
+            doc.Add(new Paragraph("\n\n", headerFont));
+
+            //table header
+            doc.Add(tableHeaderP);
+            doc.Add(new Paragraph("\n", headerFont));
+
+            //main table
+            doc.Add(shippingTable);
+
+            //close the document foe editing
+            doc.Close();
+
+            System.Diagnostics.Process.Start(fileName);
+        }
+
         #endregion
 
         #region General Methodes
@@ -2103,7 +2310,8 @@ namespace StoreMGMT
         private void Main_SelectedIndexChanged(object sender, EventArgs e)
         {
             //show message box if store was not yet configured
-            if (!File.Exists(settingsFilePath) && Main.SelectedIndex != 0)
+            if ((!File.Exists(settingsFilePath) && Main.SelectedIndex != 0) ||
+                updateSettingsFlag)
             {
                 MessageBox.Show("Store Settings must be configured first!");
 
@@ -2162,14 +2370,6 @@ namespace StoreMGMT
             userEmailTbx.Text = storeSettings[11];
             
         }
-
-
-
-
-
-
-
-
 
 
 

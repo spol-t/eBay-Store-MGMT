@@ -19,17 +19,19 @@ namespace StoreMGMT
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             ArrayList storeDetails = new ArrayList();
-            string cmdStr = "SELECT * FROM ebay_details WHERE type=@storeType";
+            string cmdStr = "SELECT * FROM ebay_details WHERE type='" + storeType + "'";
             MySqlCommand command = new MySqlCommand(cmdStr, connection);
+            
             ds = GetMultipleQuery(command);
             try
             {
                 dt = ds.Tables[0];
             }
             catch { }
-            foreach (DataRow tType in dt.Rows)
+            DataRow dr = dt.Rows[0];
+            for (int i = 0; i < dt.Columns.Count; i++)
             {
-                storeDetails.Add(tType[0]);
+                storeDetails.Add(dr[i]);
             }
 
             s.Type = storeDetails[0].ToString();
@@ -66,13 +68,32 @@ namespace StoreMGMT
             return (string[])barcodes.ToArray(typeof(string));
         }
 
+        //check if there is enough items in stock
+        public bool IsThereEnoughStock(string barcode, string table, int quantity)
+        {
+            int qInStock = 0;
+            string cmdStr = "SELECT quantity FROM " + table + " WHERE barcode=@barcode";
+            MySqlCommand command = new MySqlCommand(cmdStr, connection);
+            command.Parameters.AddWithValue("@barcode", barcode);
+            qInStock = ExecuteScalarIntQuery(command);
+            if (qInStock >= quantity)
+                return true;
+            return false;
+            
+        }
+
         //check if an item or pack exist
-        public bool IsItemPackExist(string barcode, string table)
+        public bool IsItemPackExist(string barcode, string table, string saleNum)
         {
             string str = "";
             string cmdStr = "SELECT * FROM " + table + " WHERE barcode=@barcode";
+            if (table == "sales_details")
+            {
+                cmdStr = "SELECT * FROM " + table + " WHERE barcode=@barcode And number=@saleNum";
+            }
             MySqlCommand command = new MySqlCommand(cmdStr, connection);
             command.Parameters.AddWithValue("@barcode", barcode);
+            command.Parameters.AddWithValue("@saleNum", saleNum);
             str = ExecuteScalarStringQuery(command);
             if (str != "" && str != null)
                 return true;
@@ -291,9 +312,10 @@ namespace StoreMGMT
 
             //if the item is already in the list - update the quantity
             //else insert new line
-            if (IsItemPackExist(barcode, "sales_details"))
+            if (IsItemPackExist(barcode, "sales_details", Convert.ToString(saleNum)))
             {
-                cmdStr = "UPDATE sales_details SET quantity=quantity+@quantity WHERE barcode=@barcode";
+                cmdStr = "UPDATE sales_details SET quantity=quantity+@quantity WHERE barcode=@barcode " +
+                    "AND number=@saleNum";
             }
             else
             {
@@ -310,7 +332,7 @@ namespace StoreMGMT
 
 
             //update the item's stock table
-            String cmdStr2 = "UPDATE " + type  + "s" + " SET quantity=quantity-@quantity WHARE barcode=@barcode";
+            String cmdStr2 = "UPDATE " + type  + "s" + " SET quantity=quantity-@quantity WHERE barcode=@barcode";
             MySqlCommand command2 = new MySqlCommand(cmdStr2, connection);
             command2.Parameters.AddWithValue("@barcode", barcode);
             command2.Parameters.AddWithValue("@quantity", quantity);
@@ -415,18 +437,18 @@ namespace StoreMGMT
             //if ther is an innternation site fee add it to the query
             if (internationalSite)
             {
-                cmdStr = "select ((ed.monthly_price / ed.listings) + ed.insertion "
-                + "+ ed.international_site) " + "+ (ed.finalvalue * @pr)" +
-                "from ebay_details ed where type=@type";
+                cmdStr = "SELECT ((ed.monthly_price/ed.listings)+ed.insertion"
+                + "+ed.international_site) " + "+(ed.finalvalue*@pr) " +
+                "FROM ebay_details ed WHERE type='" + storeType + "'";
             }
             else
             {
-                cmdStr = "select ((ed.monthly_price / ed.listings) + ed.insertion "
-                 + "+ (ed.finalvalue * @pr) FROM ebay_details ed where type=@type";
+                cmdStr = "select (ed.monthly_price/ed.listings)+ed.insertion"
+                 + "+(ed.finalvalue*@pr) FROM ebay_details ed where type='" + storeType +"'";
             }
 
             MySqlCommand command = new MySqlCommand(cmdStr, connection);
-            command.Parameters.AddWithValue("@type", storeType);
+           
             command.Parameters.AddWithValue("@pr", paymentReceived);
 
             return ExecuteScalarDoubleQuery(command);
@@ -530,7 +552,8 @@ namespace StoreMGMT
 
             //retriving the items in the sale 
             string cmdStr = "SELECT sd.number AS 'Sale Number', sd.barcode AS Barcode, " +
-                "i.description AS Description, sum(sd.quantity) AS Quantity " +
+                "i.description AS Description, sum(sd.quantity) AS Quantity, " +
+                "(i.weight*sum(sd.quantity)) AS 'Total Weight'" +
                 "FROM sales_details sd, items i " +
                 "WHERE sd.number=@saleNum AND i.barcode=sd.barcode " +
                 "group by barcode ";
@@ -545,7 +568,8 @@ namespace StoreMGMT
 
             //retriving the packs in the sale
             string cmdStr2 = "SELECT sd.number AS 'Sale Number', sd.barcode AS Barcode, " +
-                "i.description AS Description, sum(sd.quantity) AS Quantity " +
+                "i.description AS Description, sum(sd.quantity) AS Quantity, " +
+                "(i.weight*sum(sd.quantity)) AS 'Total Weight'" +
                 "FROM sales_details sd, packs i " +
                 "WHERE sd.number=@saleNum AND i.barcode=sd.barcode " +
                 "group by barcode ";
@@ -558,7 +582,26 @@ namespace StoreMGMT
             }
             catch { }
 
+            //Merge the items data table and the packs data table
             dt.Merge(dt2);
+
+            
+            double totalWeigt = 0;
+            int totalItems = 0;
+            foreach (DataRow tType in dt.Rows)
+            {
+                totalWeigt += Convert.ToDouble(tType[4]);
+                totalItems += Convert.ToInt16(tType[3]);
+            }
+
+            //insert a new 'total' row
+            DataRow total = dt.NewRow();
+           
+            total[2] = "Total:";
+            total[3] = totalItems;
+            total[4] = totalWeigt;
+            dt.Rows.InsertAt(total, dt.Rows.Count);
+
             return dt;
         }
 
@@ -600,7 +643,20 @@ namespace StoreMGMT
         {
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            string cmdStr = "SELECT * FROM sales_sam";
+            string cmdStr = "SELECT number AS 'Sale number'," +
+                "num_of_items AS 'Number of Items', " +
+                "total_items_cost AS 'Total Items Cost', " +
+                "num_of_packs AS 'Number of  Packs', " +
+                "total_packs_cost AS 'Total Packs Cost', " +
+                "total_weight AS 'Total Weight', " +
+                "total_ebay_fees AS 'Total eBay Fees', " +
+                "total_paypal_fees AS 'Total PayPal Fees', " +
+                "client_email AS 'Client Email', " +
+                "shipping AS 'Shipping Cost', " +
+                "income AS 'Income'," +
+                "total_cost AS 'Total Cost', " +
+                "profit AS 'Profit' " +
+                "FROM sales_sam";
             MySqlCommand command = new MySqlCommand(cmdStr, connection);
             ds = GetMultipleQuery(command);
             try
@@ -674,7 +730,7 @@ namespace StoreMGMT
         }
 
         //get items in the sale
-        public DataTable GetItemfForCDS(int saleNum)
+        public DataTable GetItemsForCDS(int saleNum)
         {
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -738,6 +794,7 @@ namespace StoreMGMT
             return dt;
         }
 
+        //calc the number of all sold units and sort by desending order
         public DataTable GetBestSellers()
         {
             DataSet ds = new DataSet();
@@ -758,6 +815,7 @@ namespace StoreMGMT
             return dt;
         }
 
+        //all the clients 
         public DataTable GetClients()
         {
             DataSet ds = new DataSet();
@@ -775,6 +833,23 @@ namespace StoreMGMT
             return dt;
         }
 
+        //all shipping methodes
+        public DataTable GetShipping()
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            string cmdStr = "SELECT country,min_weight,max_weight,registered,price FROM shipments";
+            MySqlCommand command = new MySqlCommand(cmdStr, connection);
+            ds = GetMultipleQuery(command);
+            try
+            {
+                dt = ds.Tables[0];
+            }
+            catch { }
+
+            return dt;
+        }
         #endregion
     }
 }
