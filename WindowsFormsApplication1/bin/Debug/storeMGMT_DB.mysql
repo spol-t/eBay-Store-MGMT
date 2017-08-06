@@ -1,0 +1,336 @@
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+--
+-- Host: localhost    Database: storemgmt
+-- ------------------------------------------------------
+-- Server version	5.7.18-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `storemgmt`
+--
+
+/*!40000 DROP DATABASE IF EXISTS `storemgmt`*/;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `storemgmt` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `storemgmt`;
+
+--
+-- Table structure for table `clients`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clients` (
+  `email` varchar(21) NOT NULL,
+  `firstname` varchar(21) NOT NULL,
+  `lastname` varchar(21) NOT NULL,
+  `address1` varchar(45) NOT NULL,
+  `address2` varchar(45) DEFAULT NULL,
+  `city` varchar(21) NOT NULL,
+  `state_province` varchar(21) NOT NULL,
+  `zip_postal` int(11) NOT NULL,
+  `country` varchar(21) NOT NULL,
+  `phonenumber` varchar(21) NOT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ebay_details`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ebay_details` (
+  `type` varchar(21) NOT NULL,
+  `listings` int(11) NOT NULL,
+  `monthly_price` double NOT NULL,
+  `insertion` double NOT NULL,
+  `finalvalue` double NOT NULL,
+  `international_site` double NOT NULL,
+  PRIMARY KEY (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `items`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `items` (
+  `barcode` varchar(21) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  `weight` double NOT NULL,
+  `cost` double NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`barcode`),
+  UNIQUE KEY `barcode_UNIQUE` (`barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `packs`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `packs` (
+  `barcode` varchar(21) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  `weight` double NOT NULL,
+  `cost` double NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  PRIMARY KEY (`barcode`),
+  UNIQUE KEY `barcode_UNIQUE` (`barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sales_details`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales_details` (
+  `line` int(11) NOT NULL AUTO_INCREMENT,
+  `number` int(11) NOT NULL,
+  `barcode` varchar(21) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `type` varchar(21) NOT NULL,
+  PRIMARY KEY (`line`),
+  UNIQUE KEY `id_UNIQUE` (`line`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sales_sam`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales_sam` (
+  `number` int(32) NOT NULL,
+  `num_of_items` int(11) NOT NULL,
+  `total_items_cost` double(10,2) NOT NULL,
+  `num_of_packs` int(11) NOT NULL,
+  `total_packs_cost` double(10,2) NOT NULL,
+  `total_weight` double(10,2) NOT NULL,
+  `total_ebay_fees` double(10,2) NOT NULL,
+  `total_paypal_fees` double(10,2) NOT NULL,
+  `client_email` varchar(21) NOT NULL,
+  `shipping` double(10,2) NOT NULL,
+  `income` double(10,2) NOT NULL,
+  `total_cost` double(10,2) NOT NULL,
+  `profit` double(10,2) NOT NULL,
+  PRIMARY KEY (`number`),
+  UNIQUE KEY `number_UNIQUE` (`number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `shipments`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shipments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `country` varchar(21) NOT NULL,
+  `min_weight` double NOT NULL,
+  `max_weight` double NOT NULL,
+  `registered` tinyint(1) NOT NULL,
+  `price` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-08-05 19:03:00
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+--
+-- Host: localhost    Database: storemgmt
+-- ------------------------------------------------------
+-- Server version	5.7.18-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `storemgmt`
+--
+
+/*!40000 DROP DATABASE IF EXISTS `storemgmt`*/;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `storemgmt` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `storemgmt`;
+
+--
+-- Table structure for table `clients`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clients` (
+  `email` varchar(21) NOT NULL,
+  `firstname` varchar(21) NOT NULL,
+  `lastname` varchar(21) NOT NULL,
+  `address1` varchar(45) NOT NULL,
+  `address2` varchar(45) DEFAULT NULL,
+  `city` varchar(21) NOT NULL,
+  `state_province` varchar(21) NOT NULL,
+  `zip_postal` int(11) NOT NULL,
+  `country` varchar(21) NOT NULL,
+  `phonenumber` varchar(21) NOT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ebay_details`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ebay_details` (
+  `type` varchar(21) NOT NULL,
+  `listings` int(11) NOT NULL,
+  `monthly_price` double NOT NULL,
+  `insertion` double NOT NULL,
+  `finalvalue` double NOT NULL,
+  `international_site` double NOT NULL,
+  PRIMARY KEY (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `items`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `items` (
+  `barcode` varchar(21) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  `weight` double NOT NULL,
+  `cost` double NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`barcode`),
+  UNIQUE KEY `barcode_UNIQUE` (`barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `packs`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `packs` (
+  `barcode` varchar(21) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  `weight` double NOT NULL,
+  `cost` double NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  PRIMARY KEY (`barcode`),
+  UNIQUE KEY `barcode_UNIQUE` (`barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sales_details`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales_details` (
+  `line` int(11) NOT NULL AUTO_INCREMENT,
+  `number` int(11) NOT NULL,
+  `barcode` varchar(21) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `type` varchar(21) NOT NULL,
+  PRIMARY KEY (`line`),
+  UNIQUE KEY `id_UNIQUE` (`line`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sales_sam`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales_sam` (
+  `number` int(32) NOT NULL,
+  `num_of_items` int(11) NOT NULL,
+  `total_items_cost` double(10,2) NOT NULL,
+  `num_of_packs` int(11) NOT NULL,
+  `total_packs_cost` double(10,2) NOT NULL,
+  `total_weight` double(10,2) NOT NULL,
+  `total_ebay_fees` double(10,2) NOT NULL,
+  `total_paypal_fees` double(10,2) NOT NULL,
+  `client_email` varchar(21) NOT NULL,
+  `shipping` double(10,2) NOT NULL,
+  `income` double(10,2) NOT NULL,
+  `total_cost` double(10,2) NOT NULL,
+  `profit` double(10,2) NOT NULL,
+  PRIMARY KEY (`number`),
+  UNIQUE KEY `number_UNIQUE` (`number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `shipments`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shipments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `country` varchar(21) NOT NULL,
+  `min_weight` double NOT NULL,
+  `max_weight` double NOT NULL,
+  `registered` tinyint(1) NOT NULL,
+  `price` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-08-05 19:03:13

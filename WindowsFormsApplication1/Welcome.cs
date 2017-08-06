@@ -1643,25 +1643,29 @@ namespace StoreMGMT
             {
                 case "reportsItemsInStockBtn":
                     items = DB.GetItemsPacksInStock("items");
-                    fileName = ".\\Documents\\ItemsInStock_" + thisDay.ToString("ddMMyyyy") + ".pdf";
+                    fileName = "ItemsInStock_" + thisDay.ToString("ddMMyyyy") + ".pdf";
                     tableHeader = "Items In Stock " + thisDay.ToString("dd/MM/yyyy");
                     break;
                 case "reportsPacksInStockBtn":
                     items = DB.GetItemsPacksInStock("packs");
-                    fileName = ".\\Documents\\PacksInStock_" + thisDay.ToString("ddMMyyyy") + ".pdf";
+                    fileName = "PacksInStock_" + thisDay.ToString("ddMMyyyy") + ".pdf";
                     tableHeader = "Packs In Stock " + thisDay.ToString("dd/MM/yyyy");
                     break;
                 case "reportsItemsAboutToEndBtn":
                     items = DB.GetItemsPacksEnding("items");
-                    fileName = ".\\Documents\\ItemsAboutToEnd_" + thisDay.ToString("ddMMyyyy") + ".pdf";
+                    fileName = "ItemsAboutToEnd_" + thisDay.ToString("ddMMyyyy") + ".pdf";
                     tableHeader = "Items About To End " + thisDay.ToString("dd/MM/yyyy");
                     break;
                 case "reportsPacksAboutToEndBtn":
                     items = DB.GetItemsPacksEnding("packs");
-                    fileName = ".\\Documents\\PacksAboutToEnd_" + thisDay.ToString("ddMMyyyy") + ".pdf";
+                    fileName = "PacksAboutToEnd_" + thisDay.ToString("ddMMyyyy") + ".pdf";
                     tableHeader = "Packs About To End " + thisDay.ToString("dd/MM/yyyy");
                     break;
             }
+
+            //call save file dialog
+            fileName = SaveFileLocation(fileName);
+
             try
             {
                 FileStream pdfFile = new FileStream(fileName, FileMode.Create);
@@ -1673,7 +1677,7 @@ namespace StoreMGMT
                 return;
             }
 
-
+            
 
 
 
@@ -1960,7 +1964,6 @@ namespace StoreMGMT
             System.Diagnostics.Process.Start(fileName);
             
         }
-
 
         //generate clients details report
         private void reportsClientsBtn_Click(object sender, EventArgs e)
@@ -2293,19 +2296,19 @@ namespace StoreMGMT
         #region General Methodes
 
         //add underline to requierd field not filled
-        public void UnderlineReqierdField(object sender)
+        private void UnderlineReqierdField(object sender)
         {
             ((Label)sender).Font = new System.Drawing.Font(((Label)sender).Font.Name,
                     ((Label)sender).Font.SizeInPoints, FontStyle.Underline);
         }
 
         //remove underline
-        public void RemoveUnderline(object sender)
+        private void RemoveUnderline(object sender)
         {
             ((Label)sender).Font = new System.Drawing.Font(((Label)sender).Font.Name,
                     ((Label)sender).Font.SizeInPoints, FontStyle.Regular);
         }
-        
+
         //prevent any actions before configuring the store settings
         private void Main_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2326,9 +2329,9 @@ namespace StoreMGMT
             item.Description = "";
             item.Cost = 0;
         }
-  
+
         //clear conmbobox and textbox and checkbox
-        public void ClearTextBoxes(Control control)
+        private void ClearTextBoxes(Control control)
         {
             foreach (Control c in control.Controls)
             {
@@ -2354,7 +2357,7 @@ namespace StoreMGMT
         }
 
         //fill the setings tab
-        public void FillSetingsTab()
+        private void FillSetingsTab()
         {
             storeNameTbx.Text = storeSettings[0];
             cmbStoreType.Text = storeSettings[1];
@@ -2371,6 +2374,18 @@ namespace StoreMGMT
             
         }
 
+        //choose where to save file
+        private string SaveFileLocation (string fileName)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Pdf files (*.Pdf)|*.Pdf";
+            sfd.FileName = fileName;
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                return sfd.FileName;
+            }
+            return "Error";
+        }
 
 
         #endregion
