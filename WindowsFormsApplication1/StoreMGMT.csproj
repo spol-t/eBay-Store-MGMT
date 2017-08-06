@@ -55,7 +55,7 @@
     <Compile Include="DBMySQL.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="EbayStore.cs" />
-    <Compile Include="Slae.cs" />
+    <Compile Include="Sale.cs" />
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +79,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App1.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

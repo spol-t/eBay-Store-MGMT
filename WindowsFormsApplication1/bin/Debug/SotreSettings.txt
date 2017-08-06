@@ -1,12 +1,1 @@
-storename
-Basic
-Tomer
-last
-address1
-tomer
-city
-state
-1234567
-country
-12345678
-mail@gmail.com
+

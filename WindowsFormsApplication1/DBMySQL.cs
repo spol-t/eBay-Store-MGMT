@@ -12,7 +12,7 @@ namespace StoreMGMT
     class DBMySQL : DBConnect
     {
 
-        #region eBay Store Querys
+        #region eBay Store Query
         public EbayStore GetEbayStore(string storeType)
         {
             EbayStore s = new EbayStore();
@@ -45,7 +45,7 @@ namespace StoreMGMT
         }
         #endregion
 
-        #region Item/Pack Querys
+        #region Item/Pack Query
 
         //get all items barcodes
         public string[] GetItemsBarcodes(string item)
@@ -149,7 +149,7 @@ namespace StoreMGMT
 
         #endregion
 
-        #region Client Querys
+        #region Client Query
 
         //get Clients country
         public string GetClientCountry(string email)
@@ -220,9 +220,9 @@ namespace StoreMGMT
 
         #endregion
 
-        #region shipping Querys
+        #region shipping Query
 
-        //retrive all the countrys with shipping ditails
+        //retrieve all the countrys with shipping details
         public string[] GetCountrys()
         {
             DataSet ds = new DataSet();
@@ -243,7 +243,7 @@ namespace StoreMGMT
             return (string[])country.ToArray(typeof(string));
         }
 
-        //find an existing shipping methode in the database
+        //find an existing shipping method in the database
         public bool IsShipmentExist(Shipment ship)
         {
             DataSet ds = new DataSet();
@@ -278,7 +278,7 @@ namespace StoreMGMT
             ExecuteSimpleQuery(command);
         }
 
-        //insert an new shippmet option
+        //insert an new shipment option
         public void InsertShipment(Shipment ship)
         {
             string cmdStr = "INSERT INTO shipments " +
@@ -294,7 +294,7 @@ namespace StoreMGMT
         }
         #endregion
 
-        #region Sales Querys
+        #region Sales Query
 
         //get the index of the last sale made from the database and return the following number
         public int GetNextSaleNum()
@@ -339,7 +339,7 @@ namespace StoreMGMT
             ExecuteSimpleQuery(command2);
         }
 
-        //get the number of items from a spcific type in the sale
+        //get the number of items from a specific type in the sale
         public int GetNumOfItemsInSale(int saleNum, string itemType)
         {
             int numOfItems = 0;
@@ -352,7 +352,7 @@ namespace StoreMGMT
             return numOfItems;
         }
 
-        //get the cost of all the items from a spcific type in the sale
+        //get the cost of all the items from a specific type in the sale
         public double GetTotalItemsCost(int saleNum, string itemType)
         {
             double sum = 0;
@@ -408,7 +408,7 @@ namespace StoreMGMT
             return totalWeight;
         }
 
-        //return a list of cliens email's
+        //return a list of clients email's
         public ArrayList GetClientEmail()
         {
             DataSet ds = new DataSet();
@@ -434,7 +434,7 @@ namespace StoreMGMT
         {
             string cmdStr = "";
 
-            //if ther is an innternation site fee add it to the query
+            //if there is an international site fee add it to the query
             if (internationalSite)
             {
                 cmdStr = "SELECT ((ed.monthly_price/ed.listings)+ed.insertion"
@@ -471,7 +471,7 @@ namespace StoreMGMT
             return price;
         }
 
-        //check if there is an ongoing sale that isnt complit
+        //check if there is an ongoing sale that isn't complete
         public string IsSaleEmpty(int saleNum)
         {
             string str = "No";
@@ -512,7 +512,7 @@ namespace StoreMGMT
 
         }
 
-        //chec kif a sale contains items and packs
+        //check if a sale contains items and packs
         public string CheckSaleItemsPacks(int saleNum)
         {
 
@@ -543,14 +543,14 @@ namespace StoreMGMT
                 return "There are no items in the sale";
         }
 
-        //retrive items and packs of an unfinshied sale
+        //retrieve items and packs of an unfinished sale
         public DataTable GetExistingSaleDetails(int saleNum)
         {
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
 
-            //retriving the items in the sale 
+            //retrieving the items in the sale 
             string cmdStr = "SELECT sd.number AS 'Sale Number', sd.barcode AS Barcode, " +
                 "i.description AS Description, sum(sd.quantity) AS Quantity, " +
                 "(i.weight*sum(sd.quantity)) AS 'Total Weight'" +
@@ -566,7 +566,7 @@ namespace StoreMGMT
             }
             catch { }
 
-            //retriving the packs in the sale
+            //retrieving the packs in the sale
             string cmdStr2 = "SELECT sd.number AS 'Sale Number', sd.barcode AS Barcode, " +
                 "i.description AS Description, sum(sd.quantity) AS Quantity, " +
                 "(i.weight*sum(sd.quantity)) AS 'Total Weight'" +
@@ -736,7 +736,7 @@ namespace StoreMGMT
             DataTable dt = new DataTable();
 
 
-            //retriving the items in the sale 
+            //retrieving the items in the sale 
             string cmdStr = "SELECT i.description, sum(sd.quantity), " +
                 "(i.weight * sum(sd.quantity)), (i.cost * sum(sd.quantity)) " +
                 "FROM items i, sales_details sd " +
@@ -794,7 +794,7 @@ namespace StoreMGMT
             return dt;
         }
 
-        //calc the number of all sold units and sort by desending order
+        //calc the number of all sold units and sort by descending order
         public DataTable GetBestSellers()
         {
             DataSet ds = new DataSet();
@@ -833,7 +833,7 @@ namespace StoreMGMT
             return dt;
         }
 
-        //all shipping methodes
+        //all shipping methods
         public DataTable GetShipping()
         {
             DataSet ds = new DataSet();

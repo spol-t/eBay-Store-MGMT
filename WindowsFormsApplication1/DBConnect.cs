@@ -87,14 +87,14 @@ namespace StoreMGMT
         //Send a query without return
         protected void ExecuteSimpleQuery(MySqlCommand command)
         {
-            //Locking database chanel
+            //Locking database channel
             lock (connection)
             {
                 OpenConnection();
                 command.Connection = connection;
                 try
                 {
-                    //Execute command.text qery of th DB
+                    //Execute command.text query of th DB
                     command.ExecuteNonQuery();
                 }
                 finally
@@ -132,7 +132,7 @@ namespace StoreMGMT
             }
         }
 
-        //return an Integerfrom the database
+        //return an Integer from the database
         protected int ExecuteScalarIntQuery(MySqlCommand command)
         {
             int num = 0;
